@@ -13,12 +13,6 @@ journalsRouter.post('/', (req, res) => {
 	res.status(201).send({ newJournal: 'New Journal' });
 });
 
-// mount categories router on /journals/categories
-const categoriesRouter = require('./categories');
-journalsRouter.use('/categories', categoriesRouter);
-
-// /journals/:journalId endpoint
-
 journalsRouter.get('/:journalId', (req, res) => {
 	const journalId = req.params.journalId;
 	// TODO find journal by id and return journal
@@ -37,8 +31,6 @@ journalsRouter.delete('/:journalId', (req, res) => {
 	res.status(204).send();
 });
 
-// /journals/:journalId/:emoji - update reaction counters
-
 journalsRouter.put('/:journalId/:emoji', (req, res) => {
 	const journalId = req.params.journalId;
 	const emojiToUpdate = req.params.emoji;
@@ -47,7 +39,13 @@ journalsRouter.put('/:journalId/:emoji', (req, res) => {
 	res.status(200).send({ journalId });
 });
 
+// mount categories router on /journals/categories
+
+const categoriesRouter = require('./categories');
+journalsRouter.use('/categories', categoriesRouter);
+
 // mount comments router on /journals/:journalId/comments
+
 const commentsRouter = require('./comments');
 journalsRouter.use('/:journalId/comments', commentsRouter);
 
