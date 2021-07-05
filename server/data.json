@@ -3,6 +3,7 @@
 		{
 			"id": 1,
 			"content": "post content",
+			"category": "anime",
 			"commentIds": [1, 2, 3],
 			"giphyLinks": ["link1", "link2"],
 			"emojis": {
@@ -15,6 +16,7 @@
 	"comments": [
 		{
 			"id": 1,
+			"journalId": 1,
 			"comment": "comment body",
 			"giphyLinks": ["link1", "link2"],
 			"emojis": {
