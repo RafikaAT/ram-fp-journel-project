@@ -14,17 +14,8 @@ journalsRouter.post('/', (req, res) => {
 });
 
 // /journals/categories endpoint
-
-journalsRouter.get('/categories', (req, res) => {
-	// TODO get all categories and return them
-	res.status(200).send({ categories: 'All categories' });
-});
-
-journalsRouter.get('/categories/:category', (req, res) => {
-	const { category } = req.params;
-	// TODO get all journal entries in category and return them
-	res.status(200).send({ journalEntries: `All journal entries in ${category}` });
-});
+const categoriesRouter = require('./categories');
+journalsRouter.use('/categories', categoriesRouter);
 
 // /journals/:journalId endpoint
 
