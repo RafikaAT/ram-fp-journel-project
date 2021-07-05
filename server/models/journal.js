@@ -9,6 +9,13 @@ class Journal {
 		this.id = id;
 		this.comments = comments;
 	}
+// Akash is now going to try and attempt to make a function that will add journal entries the journal object.
+	static createNewJournalEntry(journal) {
+		const newJournalId = jsonData.length + 1;
+		const newJournal = new Journal ({ id: newJournalId, ...journal});
+		jsonData.push(newJournal);
+		return newJournal;
+	}
 
 	createNewId() {
 		const allIds = data.journals.map((journal) => journal.id);
