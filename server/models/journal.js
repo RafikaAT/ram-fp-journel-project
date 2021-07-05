@@ -31,10 +31,10 @@ class Journal {
 	}
 
 	static findJournalById(idToFind) {
-		const { content, category, id, comments } = data.journals.filter(
+		const {journal} = data.journals.filter(
 			(journal) => idToFind === journal.id
 		)[0];
-		return new Journal(content, category, id, comments);
+		return new Journal();
 	}
 
 
