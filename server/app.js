@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 // mount routers
-const journalsRouter = require('./controllers/jourals');
+const journalsRouter = require('./controllers/journals');
 app.use('/journals', journalsRouter);
 
 module.exports = app;
