@@ -110,5 +110,6 @@ Pages
 - create journels router and mount on `/journals/`
 - stub all api routes on journals router
 - abstract `/journals/categories` to router
+- abstract `/journals/:journalId/comments` to router
 
 ### Misc

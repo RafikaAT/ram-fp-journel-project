@@ -47,31 +47,8 @@ journalsRouter.put('/:journalId/:emoji', (req, res) => {
 	res.status(200).send({ journalId });
 });
 
-// /journals/:journalId/comments endpoint
-
-journalsRouter.get('/:journalId/comments', (req, res) => {
-	// TODO get all comments and return them
-	res.status(200).send({ comments: 'All comments' });
-});
-
-journalsRouter.post('/:journalId/comments', (req, res) => {
-	const { commentContent } = req.body;
-	// TODO create new comment and return it
-	res.status(200).send({ comment: 'New comment' });
-});
-
-// /journals/:journalId/comments/:commentId endpoint
-
-journalsRouter.put('/:journalId/comments/:commentId', (req, res) => {
-	const commentId = req.params.commentId;
-	// TODO update comment and return it
-	res.status(200).send({ commentId });
-});
-
-journalsRouter.delete('/:journalId/comments/:commentId', (req, res) => {
-	const commentId = req.params.commentId;
-	// TODO if comment exits delete it
-	res.status(204).send();
-});
+// mount comments router on /journals/:journalId/comments
+const commentsRouter = require('./comments');
+journalsRouter.use('/:journalId/comments', commentsRouter);
 
 module.exports = journalsRouter;
