@@ -7,7 +7,7 @@
 [X] Pages list
 [X] Api Endpoints list
 [] Make TODO on notion - write initial todo
-[] Make Organisation - Go with path of least resistance (morris/ram)
+[X] Make Organisation - Go with path of least resistance (morris/ram)
 
 ## The plan
 
@@ -82,17 +82,25 @@ Pages
 - `/journels`
   - POST
   - GET
-- /journels/:journeyId
+- `/journels/:journeyId`
   - PUT
   - DELETE
   - GET (maybe)
-- /journels/:journeyId/:emoji
+- `/journels/:journeyId/:emoji`
   - PUT
-- /journels/:journeyId/comments
+- `/journels/:journeyId/comments`
   - GET
   - POST
-- /journels/:journeyId/comments/:commentId
+- `/journels/:journeyId/comments/:commentId`
   - PUT
   - DELETE
-- /categories/
+- `/categories/`
   - GET
+
+## Changes
+
+### Frontend
+
+### Backend
+
+### Misc
