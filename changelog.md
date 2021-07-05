@@ -103,4 +103,8 @@ Pages
 
 ### Backend
 
+- stub basic architecture
+- create basic api, GET `/`
+- create journels router and mount on `/journals/`
+
 ### Misc

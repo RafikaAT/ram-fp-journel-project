@@ -14,4 +14,8 @@ app.get('/', (req, res) => {
 	res.status(200).send({ message: 'Hello World!' });
 });
 
+// mount routers
+const journalsRouter = require('./controllers/jourals');
+app.use('/journals', journalsRouter);
+
 module.exports = app;
