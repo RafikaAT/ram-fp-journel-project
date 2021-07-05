@@ -82,6 +82,10 @@ Pages
 - `/journals`
   - POST
   - GET
+- `/journals/categories/`
+  - GET
+- `/journals/categories/:category`
+  - GET
 - `/journals/:journalId`
   - PUT
   - DELETE
@@ -94,13 +98,16 @@ Pages
 - `/journals/:journalId/comments/:commentId`
   - PUT
   - DELETE
-- `/categories/`
-  - GET
 
 ## Changes
 
 ### Frontend
 
 ### Backend
+
+- stub basic architecture
+- create basic api, GET `/`
+- create journels router and mount on `/journals/`
+- stub all api routes on journals router
 
 ### Misc
