@@ -13,7 +13,29 @@ describe('API', () => {
 		api.close(done);
 	});
 
-	it('responds to get / with status 200', (done) => {
+	it('responds to GET / with status 200', (done) => {
 		request(api).get('/').expect(200, done);
+	});
+
+	describe('journals router', () => {
+		it('responds to GET /journals with status 200', (done) => {
+			request(api).get('/journals').expect(200, done);
+		});
+
+		it('responds to POST /journals with status 201', (done) => {
+			request(api).post('/journals').expect(201, done);
+		});
+
+		it('responds to PUT /journals/:journalId with status 200', (done) => {
+			request(api).put('/journals/5').expect(200, done);
+		});
+
+		it('responds to DELETE /journals/:journalId with status 204 if the resource was deleted', (done) => {
+			request(api).delete('/journals/5').expect(204, done);
+		});
+
+		it('responds to PUT /journals/:journalId/:emoji with status 200', (done) => {
+			request(api).get('/journals/5/like').expect(200, done);
+		});
 	});
 });
