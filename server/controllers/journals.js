@@ -13,21 +13,6 @@ journalsRouter.post('/', (req, res) => {
 	res.status(201).send({ newJournal: 'New Journal' });
 });
 
-// /journals/categories endpoint
-
-journalsRouter.get('/categories', (req, res) => {
-	// TODO get all categories and return them
-	res.status(200).send({ categories: 'All categories' });
-});
-
-journalsRouter.get('/categories/:category', (req, res) => {
-	const { category } = req.params;
-	// TODO get all journal entries in category and return them
-	res.status(200).send({ journalEntries: `All journal entries in ${category}` });
-});
-
-// /journals/:journalId endpoint
-
 journalsRouter.get('/:journalId', (req, res) => {
 	const journalId = req.params.journalId;
 	// TODO find journal by id and return journal
@@ -46,8 +31,6 @@ journalsRouter.delete('/:journalId', (req, res) => {
 	res.status(204).send();
 });
 
-// /journals/:journalId/:emoji - update reaction counters
-
 journalsRouter.put('/:journalId/:emoji', (req, res) => {
 	const journalId = req.params.journalId;
 	const emojiToUpdate = req.params.emoji;
@@ -56,31 +39,14 @@ journalsRouter.put('/:journalId/:emoji', (req, res) => {
 	res.status(200).send({ journalId });
 });
 
-// /journals/:journalId/comments endpoint
+// mount categories router on /journals/categories
 
-journalsRouter.get('/:journalId/comments', (req, res) => {
-	// TODO get all comments and return them
-	res.status(200).send({ comments: 'All comments' });
-});
+const categoriesRouter = require('./categories');
+journalsRouter.use('/categories', categoriesRouter);
 
-journalsRouter.post('/:journalId/comments', (req, res) => {
-	const { commentContent } = req.body;
-	// TODO create new comment and return it
-	res.status(200).send({ comment: 'New comment' });
-});
+// mount comments router on /journals/:journalId/comments
 
-// /journals/:journalId/comments/:commentId endpoint
-
-journalsRouter.put('/:journalId/comments/:commentId', (req, res) => {
-	const commentId = req.params.commentId;
-	// TODO update comment and return it
-	res.status(200).send({ commentId });
-});
-
-journalsRouter.delete('/:journalId/comments/:commentId', (req, res) => {
-	const commentId = req.params.commentId;
-	// TODO if comment exits delete it
-	res.status(204).send();
-});
+const commentsRouter = require('./comments');
+journalsRouter.use('/:journalId/comments', commentsRouter);
 
 module.exports = journalsRouter;
