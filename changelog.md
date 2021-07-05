@@ -7,7 +7,7 @@
 [X] Pages list
 [X] Api Endpoints list
 [] Make TODO on notion - write initial todo
-[] Make Organisation - Go with path of least resistance (morris/ram)
+[X] Make Organisation - Go with path of least resistance (morris/ram)
 
 ## The plan
 
@@ -79,20 +79,35 @@ Pages
 
 - `/`
   - GET `Hello World`
-- `/journels`
+- `/journals`
   - POST
   - GET
-- /journels/:journeyId
+- `/journals/categories/`
+  - GET
+- `/journals/categories/:category`
+  - GET
+- `/journals/:journalId`
   - PUT
   - DELETE
   - GET (maybe)
-- /journels/:journeyId/:emoji
+- `/journals/:journalId/:emoji`
   - PUT
-- /journels/:journeyId/comments
+- `/journals/:journalId/comments`
   - GET
   - POST
-- /journels/:journeyId/comments/:commentId
+- `/journals/:journalId/comments/:commentId`
   - PUT
   - DELETE
-- /categories/
-  - GET
+
+## Changes
+
+### Frontend
+
+### Backend
+
+- stub basic architecture
+- create basic api, GET `/`
+- create journels router and mount on `/journals/`
+- stub all api routes on journals router
+
+### Misc
