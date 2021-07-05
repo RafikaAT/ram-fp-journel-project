@@ -1,0 +1,27 @@
+{
+	"journals": [
+		{
+			"id": 1,
+			"content": "post content",
+			"commentIds": [1, 2, 3],
+			"giphyLinks": ["link1", "link2"],
+			"emojis": {
+				"likes": 1,
+				"loves": 1,
+				"dislikes": 1
+			}
+		}
+	],
+	"comments": [
+		{
+			"id": 1,
+			"comment": "comment body",
+			"giphyLinks": ["link1", "link2"],
+			"emojis": {
+				"likes": 1,
+				"loves": 1,
+				"dislikes": 1
+			}
+		}
+	]
+}
