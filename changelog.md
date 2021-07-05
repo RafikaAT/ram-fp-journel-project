@@ -109,5 +109,6 @@ Pages
 - create basic api, GET `/`
 - create journels router and mount on `/journals/`
 - stub all api routes on journals router
+- abstract `/journals/categories` to router
 
 ### Misc

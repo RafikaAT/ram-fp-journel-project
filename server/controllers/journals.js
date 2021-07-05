@@ -13,7 +13,7 @@ journalsRouter.post('/', (req, res) => {
 	res.status(201).send({ newJournal: 'New Journal' });
 });
 
-// /journals/categories endpoint
+// mount categories router on /journals/categories
 const categoriesRouter = require('./categories');
 journalsRouter.use('/categories', categoriesRouter);
 
