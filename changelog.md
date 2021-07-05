@@ -79,19 +79,19 @@ Pages
 
 - `/`
   - GET `Hello World`
-- `/journels`
+- `/journals`
   - POST
   - GET
-- `/journels/:journeyId`
+- `/journals/:journalId`
   - PUT
   - DELETE
   - GET (maybe)
-- `/journels/:journeyId/:emoji`
+- `/journals/:journalId/:emoji`
   - PUT
-- `/journels/:journeyId/comments`
+- `/journals/:journalId/comments`
   - GET
   - POST
-- `/journels/:journeyId/comments/:commentId`
+- `/journals/:journalId/comments/:commentId`
   - PUT
   - DELETE
 - `/categories/`

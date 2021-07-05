@@ -1,3 +1,3 @@
-# Journel Entry Project
+# Journal Entry Project
 
 Rafika, Akash, Max.
