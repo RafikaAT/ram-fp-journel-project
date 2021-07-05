@@ -6,7 +6,7 @@
 [X] Features
 [X] Pages list
 [X] Api Endpoints list
-[] Make TODO on notion - write initial todo
+[X] Make TODO on notion - write initial todo
 [X] Make Organisation - Go with path of least resistance (morris/ram)
 
 ## The plan
@@ -100,6 +100,7 @@ Pages
   - DELETE
 
 ## Changes
+Akash - In journal.js added a function to facilitate the adding of new journal entries, in the models folder. 
 
 ### Frontend
 
