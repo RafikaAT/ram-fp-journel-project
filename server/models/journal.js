@@ -66,7 +66,7 @@ class Journal {
 			data.journals[journalIndex].emojis[emoji]--;
 		}
 		this.writeNewJournalDataToFile(data);
-		return true;
+		return new Journal(data.journals[journalIndex]);
 	}
 
 	static updateJournal(newJournalData) {
@@ -76,4 +76,5 @@ class Journal {
 		const newJournal = new Journal(newJournalData);
 		this.writeNewJournalDataToFile(data);
 		return newJournal;
+	}
 }	
