@@ -7,10 +7,20 @@ class Journal {
 		this.category = journal.category;
 		this.id = journal.id;
 		this.comments = journal.comments || [];
-	}
-	writeNewJournalDataToFile(data) {
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (!hasFileBeenUpdated) throw new Error('Data not written to file.');
+		this.emojis = journal.emojis || {
+			likes: 0,
+			loves: 0,
+			dislikes: 0,
+	};
+}
+	static writeNewJournalDataToFile(data) {
+		try {
+			writeDataToFile(data);
+			return true;
+		} catch (err) {
+			console.log(err);
+			return false;
+		}
 	}
 
 	static getAllData() {

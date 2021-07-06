@@ -6,14 +6,14 @@ function readDataFromFile() {
 	return data;
 }
 
-static function writeNewCommentDataToFile(data) {
-	try {
-		writeDataToFile(data);
+function writeDataToFile(newData) {
+	fs.writeFile('../data.json', JSON.stringify(newData), (err) => {
+		if (err) {
+			console.log(err);
+			return false;
+		}
 		return true;
-	} catch (err) {
-		console.log(err);
-		return false;
-	}
+	});
 }
 
 module.exports = { readDataFromFile, writeDataToFile };
