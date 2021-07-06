@@ -14,11 +14,7 @@ button {
 }
 
 button:hover {
-    display: block;
     background-color: #ff5e00;
     border: 1px solid  #ff5e00;
-    border-radius: 3px;
-    width: 200px;
-    height: 60px;
-    margin: 20px auto;
+    transition: 0.5s;
 }

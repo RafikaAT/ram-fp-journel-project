@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script defer src="./assets/bundle.js"></script> -->
     <script defer src="assets/js/form.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,27 +20,24 @@
             <a href="#">Movies</a>
         </div>	
     </nav>
-    <form class="journal-post-form" action="./" method="POST">
-        <div class="entry-title">Create a journal entry</div>
+    <form class="journal-post-form">
+        <h2 class="entry-title">Create a journal entry</h2>
         <div class="form-item">
           <label for="category-selector" class="form-label">Select Your Post Category</label>
-            <input id="category-selector" list="categories" name="category">
+            <input id="category-selector" list="categories" name="category" required>
             <datalist id="categories">
                 <option value="Anime">
                 <option value="Food">
                 <option value="Movies">
             </datalist>
-            <!-- <span class="form-error">No category selected</span> -->
         </div>
         <div class="form-item">
             <label for="journal-entry-title" class="form-label">Entry Title</label>
             <textarea maxlength="400" class="journal-form-title-input" name="title" id="journal-entry" placeholder="Please enter your title here (max 50 Characters)"></textarea>
-            <!-- <span class="form-error">400 characters exceeded</span> -->
         </div>
         <div class="form-item">
             <label for="journal-entry" class="form-label">Journal Entry</label>
             <textarea maxlength="400" class="journal-form-input" name="content" id="journal-entry" placeholder="Please enter your thoughts here (max 400 Characters)"></textarea>
-            <!-- <span class="form-error">400 characters exceeded</span> -->
         </div>
         <input type="submit">  
 
