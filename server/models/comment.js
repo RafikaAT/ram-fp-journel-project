@@ -13,9 +13,14 @@ class Comment {
 		};
 	}
 
-	writeNewCommentDataToFile(data) {
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (!hasFileBeenUpdated) throw new Error('Data not written to file.');
+	static writeNewCommentDataToFile(data) {
+		try {
+			writeDataToFile(data);
+			return true;
+		} catch (err) {
+			console.log(err);
+			return false;
+		}
 	}
 
 	static getAllData() {
@@ -43,6 +48,7 @@ class Comment {
 		const newComment = new Comment(newCommentData);
 		data.comments.push(newCommentData);
 		this.writeNewCommentDataToFile(data);
+		console.log('new comment written to file');
 		return newComment;
 	}
 

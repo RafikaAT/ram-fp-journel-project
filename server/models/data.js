@@ -8,12 +8,9 @@ function readDataFromFile() {
 }
 
 function writeDataToFile(newData) {
-	fs.writeFile(pathToData, JSON.stringify(newData), (err) => {
-		if (err) {
-			console.log(err);
-			return false;
-		}
-		return true;
+	fs.writeFileSync(pathToData, JSON.stringify(newData), (err) => {
+		if (err) console.log(err);
+		throw new Error(err);
 	});
 }
 
