@@ -17,10 +17,11 @@ class Journal {
 		if (!hasFileBeenUpdated) throw new Error('Data not written to file.');
 	}
 
-	
+	static getAllData() {
+		const allData = readDataFromFile();
+		return allData;
+	}
 
-
-// Akash is now going to try and attempt to make a function that will add journal entries the journal object.
 	static createNewJournalEntry(journal) {
 		const newJournalId = createNewId();
 		const newJournal = new Journal ({ id: newJournalId, ...journal});
@@ -28,25 +29,61 @@ class Journal {
 		return newJournal;
 	}
 
-	createNewId() {
+	static createNewId() {
 		const allIds = data.journals.map((journal) => journal.id);
 		const newId = Math.max(Math.max(...allIds) + 1, 0);
 		return newId;
 	}
 
 	static all() {
-		const allJournals = data.journals.map(
-			(journal) => new Journal(journal)
-		);
+		const data = this.getAllData();
+		const allJournals = data.journals.map((journal) => new Journal(journal));
 		return allJournals;
 	}
 
-	static findJournalById(idToFind) {
-		const {journal} = data.journals.filter(
-			(journal) => idToFind === journal.id
-		)[0];
-		return new Journal();
+	static findJournalById(idOfJournal) {
+		const data = this.getAllData();
+		const journal = data.journals.filter((journal) => idOfJournal === journal.id) [0];
+		return new Journal(journal) || null;
 	}
+
+	static deleteJournalById(idOfJournalToDelete) {
+		const data = this.getAllData();
+		const journal = this.findJournalById(idOfJournalToDelete);
+		if(!journal) return null;
+		data.journals = data.journals.filter((journal) => journal.id !== idOfJournalToDelete);
+		this.writeNewJournalDataToFile(data);
+		return true;
+	}
+
+	static updateEmoji(emoji, isIncrease, journalId){
+		const data = this.getAllData();
+		const selectionOfEmojis = ['like', 'love', 'dislike'];
+		if (!selectionOfEmojis.includes(emoji)) throw new Error('Unavailable emojis');
+		const journalIndex = data.journals.find((journal) => journal.id === JournalId);
+		if (isIncrease) {
+			data.journals[journalIndex].emojis[emoji]++;
+		} else {
+			data.journals[journalIndex].emojis[emoji]--;
+		}
+		this.writeNewJournalDataToFile(data);
+		return true;
+	}
+}	
+
+	// static all() {
+	// 	const allJournals = data.journals.map(
+	// 		(journal) => new Journal(journal)
+	// 	);
+	// 	return allJournals;
+	// }
+
+	// static findJournalById(idToFind) {
+	// 	const {journal} = data.journals.filter(
+	// 		(journal) => idToFind === journal.id
+	// 	)[0];
+	// 	return new Journal();
+	// }
 
 
 }
