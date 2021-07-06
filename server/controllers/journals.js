@@ -1,16 +1,28 @@
 const express = require('express');
 const journalsRouter = express.Router();
+const Journal = require('../models/journal');
 
 // /journals endpoint
 
 journalsRouter.get('/', (req, res) => {
-	res.status(200).send({ journals: 'All journals' });
+	try {
+		const journals = Journal.all()
+		res.status(200).send({ journals });
+	} catch (err) {
+		res.status(500).send;
+	}
 });
 
 journalsRouter.post('/', (req, res) => {
 	const journal = req.body;
 	// TODO create new journal entry and return new entry
-	res.status(201).send({ newJournal: 'New Journal' });
+	try {
+		const { journal } = req.body;
+		const newJournalEntry = Journal.createNewJournalEntry(journal);
+		res.status(200).send({ content: newJournalEntry });
+	} catch (err) {
+		res.status(500).send();
+	}
 });
 
 journalsRouter.get('/:journalId', (req, res) => {

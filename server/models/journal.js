@@ -109,3 +109,5 @@ class Journal {
 		return allJournalsOfCategory;
 	}
 }	
+
+module.exports = Journal;
