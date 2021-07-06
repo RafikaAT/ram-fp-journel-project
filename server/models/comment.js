@@ -48,8 +48,20 @@ class Comment {
 		const newComment = new Comment(newCommentData);
 		data.comments.push(newCommentData);
 		this.writeNewCommentDataToFile(data);
-		console.log('new comment written to file');
 		return newComment;
+	}
+
+	static getAllCommentsInJournal(journalId) {
+		const data = this.getAllData();
+		const comments = data.comments
+			.filter((comment) => Number(comment.journalId) === Number(journalId))
+			.map((comment) => new Comment(comment));
+		console.log(
+			data.comments.map((comment) => comment.journalId),
+			comments
+		);
+		if (comments.length === 0) return null;
+		return comments;
 	}
 
 	static deleteCommentById(commentIdToDelete) {
@@ -64,7 +76,7 @@ class Comment {
 	static updateComment(newCommentData) {
 		const data = this.getAllData();
 		const commentIndex = data.comments.findIndex((comment) => comment.id === newCommentData.id);
-		data.comments[commentIndex] = newCommentData;
+		data.comments[commentIndex].comment = newCommentData.comment;
 		const newComment = new Comment(newCommentData);
 		this.writeNewCommentDataToFile(data);
 		return newComment;
@@ -72,8 +84,9 @@ class Comment {
 
 	static findCommentById(idToFind) {
 		const data = this.getAllData();
-		const comment = data.comments.filter((comment) => idToFind === comment.id)[0];
-		return new Comment(comment) || null;
+		const comment = data.comments.filter((comment) => Number(idToFind) === comment.id)[0];
+		if (!comment) return null;
+		return new Comment(comment);
 	}
 
 	static deleteAllCommentsInJournal(journalId) {
