@@ -2,15 +2,25 @@ const { readDataFromFile, writeDataToFile } = require('./data');
 
 class Comment {
 	constructor(comment) {
-		this.content = comment.content;
+		this.comment = comment.comment;
 		this.category = comment.category;
 		this.id = comment.id;
 		this.journalId = comment.journalId;
+		this.emojis = comment.emojis || {
+			likes: 0,
+			loves: 0,
+			dislikes: 0,
+		};
 	}
 
-	writeNewCommentDataToFile(data) {
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (!hasFileBeenUpdated) throw new Error('Data not written to file.');
+	static writeNewCommentDataToFile(data) {
+		try {
+			writeDataToFile(data);
+			return true;
+		} catch (err) {
+			console.log(err);
+			return false;
+		}
 	}
 
 	static getAllData() {
@@ -41,6 +51,19 @@ class Comment {
 		return newComment;
 	}
 
+	static getAllCommentsInJournal(journalId) {
+		const data = this.getAllData();
+		const comments = data.comments
+			.filter((comment) => Number(comment.journalId) === Number(journalId))
+			.map((comment) => new Comment(comment));
+		console.log(
+			data.comments.map((comment) => comment.journalId),
+			comments
+		);
+		if (comments.length === 0) return null;
+		return comments;
+	}
+
 	static deleteCommentById(commentIdToDelete) {
 		const data = this.getAllData();
 		const comment = this.findCommentById(commentIdToDelete);
@@ -53,7 +76,7 @@ class Comment {
 	static updateComment(newCommentData) {
 		const data = this.getAllData();
 		const commentIndex = data.comments.findIndex((comment) => comment.id === newCommentData.id);
-		data.comments[commentIndex] = newCommentData;
+		data.comments[commentIndex].comment = newCommentData.comment;
 		const newComment = new Comment(newCommentData);
 		this.writeNewCommentDataToFile(data);
 		return newComment;
@@ -61,8 +84,9 @@ class Comment {
 
 	static findCommentById(idToFind) {
 		const data = this.getAllData();
-		const comment = data.comments.filter((comment) => idToFind === comment.id)[0];
-		return new Comment(comment) || null;
+		const comment = data.comments.filter((comment) => Number(idToFind) === comment.id)[0];
+		if (!comment) return null;
+		return new Comment(comment);
 	}
 
 	static deleteAllCommentsInJournal(journalId) {
