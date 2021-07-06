@@ -1,7 +1,3 @@
-// const fs = require('fs');
-// const jsonData = fs.readFileSync('../data.json');
-// const data = JSON.parse(jsonData);
-
 const { readDataFromFile, writeDataToFile } = require('./data'); 
 
 
@@ -23,9 +19,12 @@ class Journal {
 	}
 
 	static createNewJournalEntry(journal) {
-		const newJournalId = createNewId();
-		const newJournal = new Journal ({ id: newJournalId, ...journal});
-		data.push(newJournal);
+		const data = this.getAllData();
+		const newJournalId = this.createNewId();
+		const newJournalData = { id : newJournalId, ... journal };
+		const newJournal = new Journal(newJournalData);
+		data.journals.push(newJournalData);
+		this.writeNewJournalDataToFile(data);
 		return newJournal;
 	}
 
@@ -69,21 +68,12 @@ class Journal {
 		this.writeNewJournalDataToFile(data);
 		return true;
 	}
+
+	static updateJournal(newJournalData) {
+		const data = this.getAllData();
+		const journalIndex = data.journals.findIndex((journal) => journal.id === newJournalData.id);
+		data.journals[journalIndex] = newJournalData;
+		const newJournal = new Journal(newJournalData);
+		this.writeNewJournalDataToFile(data);
+		return newJournal;
 }	
-
-	// static all() {
-	// 	const allJournals = data.journals.map(
-	// 		(journal) => new Journal(journal)
-	// 	);
-	// 	return allJournals;
-	// }
-
-	// static findJournalById(idToFind) {
-	// 	const {journal} = data.journals.filter(
-	// 		(journal) => idToFind === journal.id
-	// 	)[0];
-	// 	return new Journal();
-	// }
-
-
-}
