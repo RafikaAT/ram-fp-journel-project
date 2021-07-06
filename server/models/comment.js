@@ -2,10 +2,15 @@ const { readDataFromFile, writeDataToFile } = require('./data');
 
 class Comment {
 	constructor(comment) {
-		this.content = comment.content;
+		this.comment = comment.comment;
 		this.category = comment.category;
 		this.id = comment.id;
 		this.journalId = comment.journalId;
+		this.emojis = comment.emojis || {
+			likes: 0,
+			loves: 0,
+			dislikes: 0,
+		};
 	}
 
 	writeNewCommentDataToFile(data) {
