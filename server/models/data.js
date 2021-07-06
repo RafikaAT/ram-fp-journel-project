@@ -1,5 +1,6 @@
 const fs = require('fs');
-const pathToData = `${process.cwd()}/data.json`;
+const path = require('path');
+const pathToData = path.resolve(__dirname, '../data.json');
 
 function readDataFromFile() {
 	const jsonData = fs.readFileSync(pathToData);
