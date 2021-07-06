@@ -1,29 +1,50 @@
 const express = require('express');
 const commentsRouter = express.Router();
+const Comment = require('../models/comment');
 
 commentsRouter.get('/', (req, res) => {
-	// TODO get all comments and return them
-	res.status(200).send({ comments: 'All comments' });
+	try {
+		const journalId = req.body.journalId;
+		console.log(journalId);
+		const comments = Comment.getAllCommentsInJournal(journalId);
+		res.status(200).send({ comments });
+	} catch (err) {
+		res.status(500).send;
+	}
 });
 
 commentsRouter.post('/', (req, res) => {
-	const { commentContent } = req.body;
-	// TODO create new comment and return it
-	res.status(200).send({ comment: 'New comment' });
+	try {
+		const { comment } = req.body;
+		const journalId = req.params.journalId;
+		comment.journalId = req.body.journalId;
+		const newComment = Comment.createNewComment(comment);
+		res.status(200).send({ comment: newComment });
+	} catch (err) {
+		res.status(500).send();
+	}
 });
 
 // /journals/:journalId/comments/:commentId endpoint
 
 commentsRouter.put('/:commentId', (req, res) => {
-	const commentId = req.params.commentId;
-	// TODO update comment and return it
-	res.status(200).send({ commentId });
+	const { comment } = req.body;
+	const updatedComment = Comment.updateComment(comment);
+	res.status(200).send({ comment: updatedComment });
 });
 
 commentsRouter.delete('/:commentId', (req, res) => {
-	const commentId = req.params.commentId;
-	// TODO if comment exits delete it
-	res.status(204).send();
+	try {
+		const commentId = req.params.commentId;
+		const isDeleted = Comment.deleteCommentById(commentId);
+		if (isDeleted) {
+			res.status(204).send();
+		} else {
+			res.status(400).send();
+		}
+	} catch (err) {
+		res.status(500).send();
+	}
 });
 
 module.exports = commentsRouter;
