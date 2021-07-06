@@ -8,6 +8,11 @@ class Comment {
 		this.journalId = comment.journalId;
 	}
 
+	writeNewCommentDataToFile(data) {
+		const hasFileBeenUpdated = writeDataToFile(data);
+		if (!hasFileBeenUpdated) throw new Error('Data not written to file.');
+	}
+
 	static getAllData() {
 		const allData = readDataFromFile();
 		return allData;
@@ -32,12 +37,8 @@ class Comment {
 		const newCommentData = { id: newCommentId, ...comment };
 		const newComment = new Comment(newCommentData);
 		data.comments.push(newCommentData);
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (hasFileBeenUpdated) {
-			return newComment;
-		} else {
-			throw new Error('Data not written to file.');
-		}
+		this.writeNewCommentDataToFile(data);
+		return newComment;
 	}
 
 	static deleteCommentById(commentIdToDelete) {
@@ -45,12 +46,8 @@ class Comment {
 		const comment = this.findCommentById(commentIdToDelete);
 		if (!comment) return null;
 		data.comments = data.comments.filter((comment) => comment.id !== commentIdToDelete);
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (hasFileBeenUpdated) {
-			return true;
-		} else {
-			throw new Error('Data not written to file.');
-		}
+		this.writeNewCommentDataToFile(data);
+		return true;
 	}
 
 	static updateComment(newCommentData) {
@@ -58,12 +55,8 @@ class Comment {
 		const commentIndex = data.comments.findIndex((comment) => comment.id === newCommentData.id);
 		data.comments[commentIndex] = newCommentData;
 		const newComment = new Comment(newCommentData);
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (hasFileBeenUpdated) {
-			return newComment;
-		} else {
-			throw new Error('Data not written to file.');
-		}
+		this.writeNewCommentDataToFile(data);
+		return newComment;
 	}
 
 	static findCommentById(idToFind) {
@@ -75,12 +68,22 @@ class Comment {
 	static deleteAllCommentsInJournal(journalId) {
 		const data = this.getAllData();
 		data.comments = data.comments.filter((comment) => comment.journalId !== journalId);
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (hasFileBeenUpdated) {
-			return true;
+		this.writeNewCommentDataToFile(data);
+		return true;
+	}
+
+	static updateEmoji(emoji, isIncrement, commentId) {
+		const data = this.getAllData();
+		const validEmojis = ['like', 'love', 'dislike'];
+		if (!validEmojis.includes(emoji)) throw new Error('Invalid emoji');
+		const commentIndex = data.comments.find((comment) => comment.id === commentId);
+		if (isIncrement) {
+			data.comments[commentIndex].emojis[emoji]++;
 		} else {
-			throw new Error('Data not written to file.');
+			data.comments[commentIndex].emojis[emoji]--;
 		}
+		this.writeNewCommentDataToFile(data);
+		return true;
 	}
 }
 
