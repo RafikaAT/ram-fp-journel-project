@@ -100,7 +100,8 @@ Pages
   - DELETE
 
 ## Changes
-Akash - In journal.js added a function to facilitate the adding of new journal entries, in the models folder. 
+
+Akash - In journal.js added a function to facilitate the adding of new journal entries, in the models folder.
 
 ### Frontend
 
@@ -112,5 +113,7 @@ Akash - In journal.js added a function to facilitate the adding of new journal e
 - stub all api routes on journals router
 - abstract `/journals/categories` to router
 - abstract `/journals/:journalId/comments` to router
+- create `Comment` model
+- abstract JSON file writing logic
 
 ### Misc
