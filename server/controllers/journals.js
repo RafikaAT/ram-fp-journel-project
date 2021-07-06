@@ -46,6 +46,12 @@ journalsRouter.use('/categories', categoriesRouter);
 
 // mount comments router on /journals/:journalId/comments
 
+journalsRouter.use('/:journalId', (req, res, next) => {
+	const { journalId } = req.params;
+	req.body.journalId = journalId;
+	next();
+});
+
 const commentsRouter = require('./comments');
 journalsRouter.use('/:journalId/comments', commentsRouter);
 
