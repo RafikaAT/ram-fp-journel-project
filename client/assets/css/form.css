@@ -1,0 +1,44 @@
+.journal-post-form {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+}
+
+.journal-post-form * {
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.entry-title {
+    font-size: 2em;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.form-item > * {
+    align-self: flex-start;
+}
+
+.form-label {
+    padding: 10px 0;
+    font-weight: 700;
+}
+
+textarea.journal-form-input {
+    resize: none;
+    min-height: 250px;
+    width: 80%;
+}
+
+textarea.journal-form-title-input {
+    resize: none;
+    min-height: 40px;
+    width: 80%;
+}
+
+/* .form-error {
+
+} */
