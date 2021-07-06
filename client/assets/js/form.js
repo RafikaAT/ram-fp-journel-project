@@ -1,10 +1,28 @@
-const animeCategory = document.querySelector([value="Anime"])
+const journalSubmitButton = document.querySelector('input[type="submit"]')
+
+journalSubmitButton.addEventListener('submit', submitJournalEntry)
 
 
-function changeBackgroundImageForAnime () {
-    // Eres un disastre! Donde esta la fetch? DONDE ESTA LA ROUTE PARA LA FETCH. Tu es un idiota.
-    let backgroundImage = document.querySelector('body');
-    return backgroundImage.innerHTML = "background-image: url('images/anime-home-background.jpeg');"
+function submitJournalEntry(e) {
+    e.preventDefault();
+    const journalEntryData = {
+
+        category: e.target.category.value,
+        title: e.target.title.value,
+        content: e.target.content.value
+    };
+
+    const options = { 
+        method: 'POST',
+        body: JSON.stringify(journalEntryData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    let port = 3000
+    fetch(`http://localhost:${port}/`, options)
+    .then(r => r.json())
+    .then(console.log(r))
+    .catch(console.warn)
 }
-
-animeCategory.addEventListener('click', changeBackgroundImageForAnime)

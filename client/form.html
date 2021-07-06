@@ -25,7 +25,7 @@
         <div class="entry-title">Create a journal entry</div>
         <div class="form-item">
           <label for="category-selector" class="form-label">Select Your Post Category</label>
-            <input id="category-selector" list="categories" name="Category">
+            <input id="category-selector" list="categories" name="category">
             <datalist id="categories">
                 <option value="Anime">
                 <option value="Food">
@@ -35,12 +35,12 @@
         </div>
         <div class="form-item">
             <label for="journal-entry-title" class="form-label">Entry Title</label>
-            <textarea maxlength="400" class="journal-form-title-input" name="Post" id="journal-entry" placeholder="Please enter your title here (max 50 Characters)"></textarea>
+            <textarea maxlength="400" class="journal-form-title-input" name="title" id="journal-entry" placeholder="Please enter your title here (max 50 Characters)"></textarea>
             <!-- <span class="form-error">400 characters exceeded</span> -->
         </div>
         <div class="form-item">
             <label for="journal-entry" class="form-label">Journal Entry</label>
-            <textarea maxlength="400" class="journal-form-input" name="Post" id="journal-entry" placeholder="Please enter your thoughts here (max 400 Characters)"></textarea>
+            <textarea maxlength="400" class="journal-form-input" name="content" id="journal-entry" placeholder="Please enter your thoughts here (max 400 Characters)"></textarea>
             <!-- <span class="form-error">400 characters exceeded</span> -->
         </div>
         <input type="submit">  
