@@ -100,4 +100,12 @@ class Journal {
 		})
 		return categories;
 	}
+
+	static getJournalsByCategory(category) {
+		const data = this.getAllData();
+		const allJournalsOfCategory = data.journals.filter((journal) => category === journal.category)
+		.map(journal => new Journal(journal)); 
+		if (allJournalsOfCategory.length === 0) return null;
+		return allJournalsOfCategory;
+	}
 }	
