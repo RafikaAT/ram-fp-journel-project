@@ -8,9 +8,14 @@ class Comment {
 		this.journalId = comment.journalId;
 	}
 
-	writeNewCommentDataToFile(data) {
-		const hasFileBeenUpdated = writeDataToFile(data);
-		if (!hasFileBeenUpdated) throw new Error('Data not written to file.');
+	static writeNewCommentDataToFile(data) {
+		try {
+			writeDataToFile(data);
+			return true;
+		} catch (err) {
+			console.log(err);
+			return false;
+		}
 	}
 
 	static getAllData() {
