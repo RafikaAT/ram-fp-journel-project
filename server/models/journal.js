@@ -77,4 +77,17 @@ class Journal {
 		this.writeNewJournalDataToFile(data);
 		return newJournal;
 	}
+
+	static getAllCategories() {
+		const data = this.getAllData();
+		const categories = [];
+		const categoryData= data.journals
+			.map(journal => journal.category)
+			.forEach(category => {
+			if (!categories.includes(category)) {
+				categories.push(category)
+			}
+		})
+		return categories;
+	}
 }	
