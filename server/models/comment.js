@@ -5,6 +5,7 @@ class Comment {
 	constructor(comment) {
 		this.comment = comment.comment;
 		this.category = comment.category;
+		this.giphyData = comment.giphyData;
 		this.id = comment.id;
 		this.journalId = comment.journalId;
 		this.emojis = comment.emojis || {
@@ -56,10 +57,6 @@ class Comment {
 		const comments = data.comments
 			.filter((comment) => comment.journalId === journalId)
 			.map((comment) => new Comment(comment));
-		console.log(
-			data.comments.map((comment) => comment.journalId),
-			comments
-		);
 		if (comments.length === 0) return null;
 		return comments;
 	}
