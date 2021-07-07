@@ -36,6 +36,21 @@ async function postDataToApi (url, body) {
     }
 }
 
+async function putDataToApi (url, body) {
+    try{
+        const reqObj = {
+            method: 'PUT',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({
+                //whatever we are putting?
+            })
+        }
+    } catch(error){
+        console.error(err);
+        return false;
+    }
+}
+
 
 
 
