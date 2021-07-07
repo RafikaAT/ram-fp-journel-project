@@ -57,10 +57,6 @@ class Comment {
 		const comments = data.comments
 			.filter((comment) => comment.journalId === journalId)
 			.map((comment) => new Comment(comment));
-		console.log(
-			data.comments.map((comment) => comment.journalId),
-			comments
-		);
 		if (comments.length === 0) return null;
 		return comments;
 	}
