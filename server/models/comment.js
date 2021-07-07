@@ -5,7 +5,7 @@ class Comment {
 	constructor(comment) {
 		this.comment = comment.comment;
 		this.category = comment.category;
-		this.giphyData = journal.giphyData;
+		this.giphyData = comment.giphyData;
 		this.id = comment.id;
 		this.journalId = comment.journalId;
 		this.emojis = comment.emojis || {
