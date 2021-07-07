@@ -1,4 +1,4 @@
-const { readDataFromFile, writeDataToFile } = require('./data'); 
+const { readDataFromFile, writeDataToFile } = require('./data');
 const { v4: uuidv4 } = require('uuid');
 
 class Journal {
@@ -7,13 +7,14 @@ class Journal {
 		this.title = journal.title;
 		this.category = journal.category;
 		this.id = journal.id;
+		this.giphyData = journal.giphyData;
 		this.comments = journal.comments || [];
 		this.emojis = journal.emojis || {
 			likes: 0,
 			loves: 0,
 			dislikes: 0,
-	};
-}
+		};
+	}
 	static writeNewJournalDataToFile(data) {
 		try {
 			writeDataToFile(data);
@@ -32,7 +33,7 @@ class Journal {
 	static createNewJournalEntry(journal) {
 		const data = this.getAllData();
 		const newJournalId = this.createNewId();
-		const newJournalData = { id : newJournalId, ... journal };
+		const newJournalData = { id: newJournalId, ...journal };
 		const newJournal = new Journal(newJournalData);
 		data.journals.push(newJournalData);
 		this.writeNewJournalDataToFile(data);
@@ -52,20 +53,20 @@ class Journal {
 
 	static findJournalById(idOfJournal) {
 		const data = this.getAllData();
-		const journal = data.journals.filter((journal) => idOfJournal === journal.id) [0];
+		const journal = data.journals.filter((journal) => idOfJournal === journal.id)[0];
 		return new Journal(journal) || null;
 	}
 
 	static deleteJournalById(idOfJournalToDelete) {
 		const data = this.getAllData();
 		const journal = this.findJournalById(idOfJournalToDelete);
-		if(!journal) return null;
+		if (!journal) return null;
 		data.journals = data.journals.filter((journal) => journal.id !== idOfJournalToDelete);
 		this.writeNewJournalDataToFile(data);
 		return true;
 	}
 
-	static updateEmoji(emoji, isIncrease, journalId){
+	static updateEmoji(emoji, isIncrease, journalId) {
 		const data = this.getAllData();
 		const selectionOfEmojis = ['likes', 'loves', 'dislikes'];
 		if (!selectionOfEmojis.includes(emoji)) throw new Error('Unavailable emojis');
@@ -81,14 +82,14 @@ class Journal {
 
 	static updateJournal(newJournalData) {
 		const data = this.getAllData();
-		console.log("random string");
+		console.log('random string');
 		const journalIndex = data.journals.findIndex((journal) => journal.id === newJournalData.id);
-		console.log("random string 2", journalIndex);
+		console.log('random string 2', journalIndex);
 		data.journals[journalIndex].content = newJournalData.content;
 		data.journals[journalIndex].title = newJournalData.title;
-		console.log("random string 3");
+		console.log('random string 3');
 		const newJournal = new Journal(data.journals[journalIndex]);
-		console.log("random string 4");
+		console.log('random string 4');
 		this.writeNewJournalDataToFile(data);
 		return newJournal;
 	}
@@ -96,23 +97,24 @@ class Journal {
 	static getAllCategories() {
 		const data = this.getAllData();
 		const categories = [];
-		const categoryData= data.journals
-			.map(journal => journal.category)
-			.forEach(category => {
-			if (!categories.includes(category)) {
-				categories.push(category)
-			}
-		})
+		const categoryData = data.journals
+			.map((journal) => journal.category)
+			.forEach((category) => {
+				if (!categories.includes(category)) {
+					categories.push(category);
+				}
+			});
 		return categories;
 	}
 
 	static getJournalsByCategory(category) {
 		const data = this.getAllData();
-		const allJournalsOfCategory = data.journals.filter((journal) => category === journal.category)
-		.map(journal => new Journal(journal)); 
+		const allJournalsOfCategory = data.journals
+			.filter((journal) => category === journal.category)
+			.map((journal) => new Journal(journal));
 		if (allJournalsOfCategory.length === 0) return null;
 		return allJournalsOfCategory;
 	}
-}	
+}
 
 module.exports = Journal;
