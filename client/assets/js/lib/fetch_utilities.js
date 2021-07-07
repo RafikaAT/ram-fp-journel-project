@@ -26,10 +26,11 @@ async function postDataToApi (url, body) {
         const reqObj = {
              method: 'POST',
              headers: {'Content-Type': 'application/json'},
-             body: JSON.stringify({
-                 journal: newJournal,
-             })  
-            }
+             body: JSON.stringify(body)
+        }
+        const fetchedData = await fetch(url, reqObj)
+        const dataFromJSON = await fetchedData.json() 
+        return dataFromJSON; 
     } catch(err) {
         console.error(err);
         return false;
@@ -41,10 +42,11 @@ async function putDataToApi (url, body) {
         const reqObj = {
             method: 'PUT',
             headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({
-                //whatever we are putting?
-            })
+            body: JSON.stringify(body)
         }
+        const fetchedData = await fetch(url, reqObj)
+        const dataFromJSON = await fetchedData.json() 
+        return dataFromJSON; 
     } catch(error){
         console.error(err);
         return false;
