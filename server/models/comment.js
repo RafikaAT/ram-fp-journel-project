@@ -98,9 +98,9 @@ class Comment {
 
 	static updateEmoji(emoji, isIncrement, commentId) {
 		const data = this.getAllData();
-		const validEmojis = ['like', 'love', 'dislike'];
+		const validEmojis = ['likes', 'loves', 'dislikes'];
 		if (!validEmojis.includes(emoji)) throw new Error('Invalid emoji');
-		const commentIndex = data.comments.find((comment) => comment.id === commentId);
+		const commentIndex = data.comments.findIndex((comment) => comment.id === commentId);
 		if (isIncrement) {
 			data.comments[commentIndex].emojis[emoji]++;
 		} else {

@@ -40,8 +40,6 @@ class Journal {
 	}
 
 	static createNewId() {
-		// const allIds = data.journals.map((journal) => journal.id);
-		// const newId = Math.max(Math.max(...allIds) + 1, 0);
 		const newId = uuidv4();
 		return newId;
 	}
@@ -69,9 +67,9 @@ class Journal {
 
 	static updateEmoji(emoji, isIncrease, journalId){
 		const data = this.getAllData();
-		const selectionOfEmojis = ['like', 'love', 'dislike'];
+		const selectionOfEmojis = ['likes', 'loves', 'dislikes'];
 		if (!selectionOfEmojis.includes(emoji)) throw new Error('Unavailable emojis');
-		const journalIndex = data.journals.find((journal) => journal.id === JournalId);
+		const journalIndex = data.journals.findIndex((journal) => journal.id === journalId);
 		if (isIncrease) {
 			data.journals[journalIndex].emojis[emoji]++;
 		} else {
