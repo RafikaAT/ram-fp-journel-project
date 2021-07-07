@@ -1,9 +1,10 @@
 const { readDataFromFile, writeDataToFile } = require('./data'); 
-
+const { v4: uuidv4 } = require('uuid');
 
 class Journal {
 	constructor(journal) {
 		this.content = journal.content;
+		this.title = journal.title;
 		this.category = journal.category;
 		this.id = journal.id;
 		this.comments = journal.comments || [];
@@ -39,8 +40,9 @@ class Journal {
 	}
 
 	static createNewId() {
-		const allIds = data.journals.map((journal) => journal.id);
-		const newId = Math.max(Math.max(...allIds) + 1, 0);
+		// const allIds = data.journals.map((journal) => journal.id);
+		// const newId = Math.max(Math.max(...allIds) + 1, 0);
+		const newId = uuidv4();
 		return newId;
 	}
 
@@ -81,9 +83,14 @@ class Journal {
 
 	static updateJournal(newJournalData) {
 		const data = this.getAllData();
+		console.log("random string");
 		const journalIndex = data.journals.findIndex((journal) => journal.id === newJournalData.id);
-		data.journals[journalIndex] = newJournalData;
-		const newJournal = new Journal(newJournalData);
+		console.log("random string 2", journalIndex);
+		data.journals[journalIndex].content = newJournalData.content;
+		data.journals[journalIndex].title = newJournalData.title;
+		console.log("random string 3");
+		const newJournal = new Journal(data.journals[journalIndex]);
+		console.log("random string 4");
 		this.writeNewJournalDataToFile(data);
 		return newJournal;
 	}

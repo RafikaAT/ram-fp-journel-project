@@ -14,33 +14,50 @@ journalsRouter.get('/', (req, res) => {
 });
 
 journalsRouter.post('/', (req, res) => {
-	const journal = req.body;
-	// TODO create new journal entry and return new entry
 	try {
-		const { journal } = req.body;
+		const {journal} = req.body;
 		const newJournalEntry = Journal.createNewJournalEntry(journal);
-		res.status(200).send({ content: newJournalEntry });
+		res.status(200).send({ newJournalEntry });
 	} catch (err) {
 		res.status(500).send();
 	}
 });
 
 journalsRouter.get('/:journalId', (req, res) => {
-	const journalId = req.params.journalId;
-	// TODO find journal by id and return journal
-	res.status(200).send({ journalId });
+	try {
+		const journalId = req.params.journalId;
+		const foundJournal = Journal.findJournalById(journalId);
+		res.status(200).send({ foundJournal });
+		//MAYBE: Should put if statement here; if foundJournal is empty, status 204?
+	} catch (err) {
+		res.status(500).send();
+	}
 });
 
 journalsRouter.put('/:journalId', (req, res) => {
-	const journalId = req.params.journalId;
-	// TODO update journal entry, return updated entry
-	res.status(200).send({ journalId });
+	try {
+		const { journal } = req.body;
+		const journalId = req.params.journalId;
+		journal.id = journalId;
+		const updatedJournal = Journal.updateJournal(journal);
+		res.status(200).send({ journal: updatedJournal });
+	} catch (err) {
+		res.status(500).send();
+	}
 });
 
 journalsRouter.delete('/:journalId', (req, res) => {
-	const journalId = req.params.journalId;
-	// TODO if journal exists delete
-	res.status(204).send();
+	try {
+		const journalid = req.params.journalId;
+		const isDeleted = Journal.deleteJournalById(journalid);
+		if (isDeleted) {
+			res.status(204).send();
+		} else {
+			res.status(400).send();
+		}
+	} catch (err) {
+		res.status(500).send();
+	}
 });
 
 journalsRouter.put('/:journalId/:emoji', (req, res) => {
