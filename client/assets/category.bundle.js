@@ -9,13 +9,68 @@ document.addEventListener('DOMContentLoaded', renderJournalsToPage);
 // construct journal html
 // append comments
 
-},{"./lib/handlers":2}],2:[function(require,module,exports){
+},{"./lib/handlers":3}],2:[function(require,module,exports){
+async function getDataFromApi(url) {
+	try {
+		const fetchedData = await fetch(url);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+}
+
+async function deleteDataFromApi(url) {
+	try {
+		const reqObj = { method: 'DELETE' };
+		await fetch(url, reqObj);
+		return true;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+}
+
+async function postDataToApi(url, body) {
+	try {
+		const reqObj = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+}
+
+async function putDataToApi(url, body) {
+	try {
+		const reqObj = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (error) {
+		console.error(err);
+		return false;
+	}
+}
+
+module.exports = { putDataToApi, getDataFromApi, deleteDataFromApi, postDataToApi };
+
+},{}],3:[function(require,module,exports){
 const { createAllJournals } = require('./helpers');
 
-function renderJournalsToPage() {
-	console.log('renderJournals');
-	const journals = createAllJournals();
-	console.log(journals);
+async function renderJournalsToPage() {
+	const journals = await createAllJournals();
 	const main = document.querySelector('main');
 	journals.forEach((journal) => {
 		main.append(journal);
@@ -24,10 +79,15 @@ function renderJournalsToPage() {
 
 module.exports = { renderJournalsToPage };
 
-},{"./helpers":3}],3:[function(require,module,exports){
-// import fetch utilities
+},{"./helpers":4}],4:[function(require,module,exports){
+const {
+	putDataToApi,
+	getDataFromApi,
+	deleteDataFromApi,
+	postDataToApi,
+} = require('./fetch_utilities');
 
-function createAllJournals() {
+async function createAllJournals() {
 	// TODO fetch real journal Data
 	// ******************
 	// MOCKDATA
@@ -52,11 +112,11 @@ function createAllJournals() {
 		],
 	};
 	// ******************
-
+	const url = 'http://localhost:5000/journals';
+	const data = await getDataFromApi(url);
+	console.log(data);
 	const journals = [];
 	mockData.journals.forEach((journal) => {
-		console.log(journal);
-		console.log(createJournalHTML(journal));
 		journals.push(createJournalHTML(journal));
 	});
 
@@ -167,4 +227,4 @@ function createEmojisHTML({ likes, loves, dislikes }) {
 }
 module.exports = { createAllJournals };
 
-},{}]},{},[1]);
+},{"./fetch_utilities":2}]},{},[1]);

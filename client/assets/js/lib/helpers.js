@@ -1,6 +1,11 @@
-// import fetch utilities
+const {
+	putDataToApi,
+	getDataFromApi,
+	deleteDataFromApi,
+	postDataToApi,
+} = require('./fetch_utilities');
 
-function createAllJournals() {
+async function createAllJournals() {
 	// TODO fetch real journal Data
 	// ******************
 	// MOCKDATA
@@ -25,11 +30,11 @@ function createAllJournals() {
 		],
 	};
 	// ******************
-
+	const url = 'http://localhost:5000/journals';
+	const data = await getDataFromApi(url);
+	console.log(data);
 	const journals = [];
 	mockData.journals.forEach((journal) => {
-		console.log(journal);
-		console.log(createJournalHTML(journal));
 		journals.push(createJournalHTML(journal));
 	});
 

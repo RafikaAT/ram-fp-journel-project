@@ -5,7 +5,7 @@
 			"title": "test-title1",
 			"content": "post content1",
 			"category": "anime",
-			"comments": [1],
+			"comments": ["test-comment-id", "test-comment-id3", "test-comment-id6"],
 			"giphyData": {
 				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
 				"alt": "alt"
@@ -21,7 +21,7 @@
 			"title": "test-title2",
 			"content": "post content2",
 			"category": "anime",
-			"comments": [1],
+			"comments": ["test-comment-id1", "test-comment-id2", "test-comment-id7"],
 			"giphyData": {
 				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
 				"alt": "alt"
@@ -37,7 +37,7 @@
 			"title": "test-title3",
 			"content": "post content3",
 			"category": "anime",
-			"comments": [1],
+			"comments": ["test-comment-id4", "test-comment-id5"],
 			"giphyData": {
 				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
 				"alt": "alt"
