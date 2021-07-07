@@ -26,3 +26,22 @@ function submitJournalEntry(e) {
     .then(console.log(r))
     .catch(console.warn)
 }
+
+const form = document.querySelector('#new-journal-form');
+form.addEventListener('submit', (e)=>postJournal(e))
+
+
+function postJournal(e) {
+    e.preventDefault();
+    const newJournal = document.querySelector('#new-journal').value;
+    const url = 'http://localhost:3000/journals';
+    const reqObj = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        journal: newJournal,
+      })
+    }
+    const newJournal = postDataToApi(url, reqObj);
+  }
+
