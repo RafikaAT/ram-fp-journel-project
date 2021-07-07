@@ -102,6 +102,7 @@ Pages
 ## Changes
 
 Akash - In journal.js added a function to facilitate the adding of new journal entries, in the models folder.
+06/07/21, I have added all the neccesary methods to the journals model and finished it off, now it is completely finished.
 
 ### Frontend
 

@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "jest --watchAll",
-		"dev": "concurrently \"lite-server\" \"watchify -o assets/js/index.js assets/bundle.js\""
+		"dev": "concurrently \"lite-server\" \"watchify -o assets/js/index.js assets/index.bundle.js\" \"watchify -o assets/js/category.js assets/category.bundle.js\""
 	},
 	"keywords": [],
 	"author": "",
