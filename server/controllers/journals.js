@@ -1,42 +1,71 @@
 const express = require('express');
 const journalsRouter = express.Router();
+const Journal = require('../models/journal');
 
 // /journals endpoint
 
 journalsRouter.get('/', (req, res) => {
-	res.status(200).send({ journals: 'All journals' });
+  try {
+    const journals = Journal.all();
+    res.status(200).send({ journals });
+  } catch (err) {
+    res.status(500).send;
+  }
 });
 
 journalsRouter.post('/', (req, res) => {
-	const journal = req.body;
-	// TODO create new journal entry and return new entry
-	res.status(201).send({ newJournal: 'New Journal' });
+  try {
+    const { journal } = req.body;
+    const newJournalEntry = Journal.createNewJournalEntry(journal);
+    res.status(200).send({ newJournalEntry });
+  } catch (err) {
+    res.status(500).send();
+  }
 });
 
 journalsRouter.get('/:journalId', (req, res) => {
-	const journalId = req.params.journalId;
-	// TODO find journal by id and return journal
-	res.status(200).send({ journalId });
+  try {
+    const journalId = req.params.journalId;
+    const foundJournal = Journal.findJournalById(journalId);
+    res.status(200).send({ foundJournal });
+    //MAYBE: Should put if statement here; if foundJournal is empty, status 204?
+  } catch (err) {
+    res.status(500).send();
+  }
 });
 
 journalsRouter.put('/:journalId', (req, res) => {
-	const journalId = req.params.journalId;
-	// TODO update journal entry, return updated entry
-	res.status(200).send({ journalId });
+  try {
+    const { journal } = req.body;
+    const journalId = req.params.journalId;
+    journal.id = journalId;
+    const updatedJournal = Journal.updateJournal(journal);
+    res.status(200).send({ journal: updatedJournal });
+  } catch (err) {
+    res.status(500).send();
+  }
 });
 
 journalsRouter.delete('/:journalId', (req, res) => {
-	const journalId = req.params.journalId;
-	// TODO if journal exists delete
-	res.status(204).send();
+  try {
+    const journalid = req.params.journalId;
+    const isDeleted = Journal.deleteJournalById(journalid);
+    if (isDeleted) {
+      res.status(204).send();
+    } else {
+      res.status(400).send();
+    }
+  } catch (err) {
+    res.status(500).send();
+  }
 });
 
 journalsRouter.put('/:journalId/:emoji', (req, res) => {
-	const journalId = req.params.journalId;
-	const emojiToUpdate = req.params.emoji;
-	const newEmojiStatus = req.body.isEmojiChecked;
-	// TODO update journals emoji counter
-	res.status(200).send({ journalId });
+  const newEmojiStatus = req.body.isEmojiChecked;
+  const journalId = req.params.journalId;
+  const emojiToUpdate = req.params.emoji;
+  const updatedJournal = Journal.updateEmoji(emojiToUpdate, newEmojiStatus, journalId);
+  res.status(200).send({ journal: updatedJournal });
 });
 
 // mount categories router on /journals/categories
@@ -47,9 +76,9 @@ journalsRouter.use('/categories', categoriesRouter);
 // mount comments router on /journals/:journalId/comments
 
 journalsRouter.use('/:journalId', (req, res, next) => {
-	const { journalId } = req.params;
-	req.body.journalId = journalId;
-	next();
+  const { journalId } = req.params;
+  req.body.journalId = journalId;
+  next();
 });
 
 const commentsRouter = require('./comments');

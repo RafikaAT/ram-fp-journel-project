@@ -5,7 +5,6 @@ const Comment = require('../models/comment');
 commentsRouter.get('/', (req, res) => {
 	try {
 		const journalId = req.body.journalId;
-		console.log(journalId);
 		const comments = Comment.getAllCommentsInJournal(journalId);
 		res.status(200).send({ comments });
 	} catch (err) {
