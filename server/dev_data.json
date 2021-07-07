@@ -1,29 +1,55 @@
 {
-	"journals": [
-		{
-			"id": "test-id",
-			"content": "post content",
-			"category": "anime",
-			"commentIds": [1, 2, 3],
-			"giphyLinks": ["link1", "link2"],
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
-		}
-	],
-	"comments": [
-		{
-			"id": "test-comment-id",
-			"journalId": "test-id",
-			"comment": "comment body",
-			"giphyLinks": ["link1", "link2"],
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
-		}
-	]
+  "journals": [
+    {
+      "id": "test-id",
+      "content": "post content",
+      "category": "anime",
+      "commentIds": [1, 2, 3],
+      "giphyLinks": ["link1", "link2"],
+      "emojis": {
+        "likes": 1,
+        "loves": 1,
+        "dislikes": 1
+      }
+    },
+
+    {
+      "id": "test-id-2",
+      "content": "post content again",
+      "category": "Food",
+      "commentIds": [1, 2, 3],
+      "giphyLinks": ["link1", "link2"],
+      "emojis": {
+        "likes": 1,
+        "loves": 1,
+        "dislikes": 1
+      }
+    },
+
+    {
+      "id": "test-id-3",
+      "content": "post content again",
+      "category": "anime",
+      "commentIds": [1, 2, 3],
+      "giphyLinks": ["link1", "link2"],
+      "emojis": {
+        "likes": 1,
+        "loves": 1,
+        "dislikes": 1
+      }
+    }
+  ],
+  "comments": [
+    {
+      "id": "test-comment-id",
+      "journalId": "test-id",
+      "comment": "comment body",
+      "giphyLinks": ["link1", "link2"],
+      "emojis": {
+        "likes": 1,
+        "loves": 1,
+        "dislikes": 1
+      }
+    }
+  ]
 }
