@@ -1,7 +1,7 @@
 {
 	"journals": [
 		{
-			"id": 1,
+			"id": "test-id",
 			"content": "post content",
 			"category": "anime",
 			"commentIds": [1, 2, 3],
@@ -15,8 +15,8 @@
 	],
 	"comments": [
 		{
-			"id": 1,
-			"journalId": 1,
+			"id": "test-comment-id",
+			"journalId": "test-id",
 			"comment": "comment body",
 			"giphyLinks": ["link1", "link2"],
 			"emojis": {
