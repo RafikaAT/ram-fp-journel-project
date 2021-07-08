@@ -4,14 +4,13 @@ const {
 	deleteDataFromApi,
 	postDataToApi,
 } = require('./fetch_utilities');
-
+const { fetchGiphyData, handleGiphySearch, shuffleImage } = require('./giphy');
 const urlInfo = require('../urlInfo');
 
 async function createAllJournals() {
 	const category = window.location.pathname.split('.')[0];
 	const url = `${urlInfo.backEnd}journals/categories${category}`;
 	const data = await getDataFromApi(url);
-	console.log(data);
 	const journals = data.journalEntries.map(async (journal) => {
 		return createJournalHTML(journal);
 	});
@@ -20,7 +19,8 @@ async function createAllJournals() {
 }
 
 // accept journalData object and comments array
-async function createJournalHTML({ id, title, content, giphyData, emojis, comments }) {
+async function createJournalHTML(journal) {
+	const { id, title, content, giphyData, emojis, comments } = journal;
 	const journalArticle = document.createElement('article');
 	journalArticle.id = id;
 
@@ -42,24 +42,140 @@ async function createJournalHTML({ id, title, content, giphyData, emojis, commen
 	const emojisList = createEmojisHTML(emojis, true, id);
 	journalArticle.append(emojisList);
 
-	if (comments.length) {
-		const commentsDiv = await createComments(id);
-		journalArticle.append(commentsDiv);
-	}
+	const isComments = comments.length > 0;
+	const commentsDiv = await createComments(journal, isComments);
+	journalArticle.append(commentsDiv);
 
 	return journalArticle;
 }
 
-async function createComments(journalId) {
+async function createComments(journal, isComments) {
+	const journalId = journal.id;
 	const commentsDiv = document.createElement('div');
+	commentsDiv.classList.add('comments');
 	const url = `${urlInfo.backEnd}journals/${journalId}/comments`;
 	const data = await getDataFromApi(url);
-	commentsDiv.classList.add('comments');
-	data.comments.forEach((comment) => {
-		commentsDiv.append(createCommentHtml(comment));
-	});
+	if (isComments) {
+		data.comments.forEach((comment) => {
+			commentsDiv.append(createCommentHtml(comment));
+		});
+	}
+
+	const commentButton = await createAddCommentButton(journal);
+	commentsDiv.append(commentButton);
 
 	return commentsDiv;
+}
+
+async function createAddCommentButton(journal) {
+	const addCommentDiv = document.createElement('div');
+	const addCommentButton = document.createElement('button');
+	addCommentButton.innerText = 'Comment';
+	addCommentDiv.append(addCommentButton);
+
+	addCommentButton.addEventListener('click', () => {
+		handleAddCommentButtonClick(journal, addCommentDiv, addCommentButton);
+	});
+
+	return addCommentDiv;
+}
+
+async function handleAddCommentButtonClick(journal, div, button) {
+	if (document.querySelector('form')) {
+		alert('Please submit your other comment first.');
+		return;
+	}
+	button.style.display = 'none';
+	const form = document.createElement('form');
+
+	const commentInputLabel = document.createElement('label');
+	commentInputLabel.setAttribute('for', 'commentInput');
+	commentInputLabel.textContent = 'comment';
+	form.append(commentInputLabel);
+
+	const commentInput = document.createElement('input');
+	commentInput.setAttribute('name', 'commentInput');
+	commentInput.setAttribute('type', 'text');
+	commentInput.setAttribute('required', true);
+	commentInput.id = 'commentInput';
+	form.append(commentInput);
+
+	// GIPHY
+
+	// <label for="giphy" class="form-label">Select A Gif</label>
+	const giphyInputLabel = document.createElement('label');
+	giphyInputLabel.setAttribute('for', 'giphy');
+	giphyInputLabel.textContent = 'Search for a gif';
+	form.append(giphyInputLabel);
+
+	// <input type="text" name="giphy" id="giphy" class="hidden-input" />
+	// giphyInput.addEventListener('keydown', handleGiphySearch);
+	const giphyInput = document.createElement('input');
+	giphyInput.setAttribute('name', 'giphy');
+	giphyInput.setAttribute('type', 'text');
+	giphyInput.id = 'giphy';
+	giphyInput.addEventListener('keydown', handleGiphySearch);
+	form.append(giphyInput);
+
+	// <button class="giphy-search">search</button>
+	// giphyButton.addEventListener('click', handleGiphySearch);
+	const giphySearchButton = document.createElement('button');
+	giphySearchButton.innerText = 'Search';
+	giphySearchButton.className = 'giphy-search';
+	giphySearchButton.addEventListener('click', handleGiphySearch);
+	form.append(giphySearchButton);
+
+	// <img src="" alt="" class="giphy-image" />
+	const giphyImage = document.createElement('img');
+	giphyImage.src = '';
+	giphyImage.alt = '';
+	giphyImage.className = 'giphy-image';
+	form.append(giphyImage);
+
+	// <button class="shuffle hidden">Shuffle</button>
+	// shuffleButton.addEventListener('click', (e) => {
+	// 	e.preventDefault();
+	// 	shuffleImage();
+	// });
+	const giphyShuffleButton = document.createElement('button');
+	giphyShuffleButton.innerText = 'Shuffle';
+	giphyShuffleButton.className = 'shuffle hidden';
+	giphyShuffleButton.addEventListener('click', (e) => {
+		e.preventDefault();
+		shuffleImage();
+	});
+	form.append(giphySearchButton);
+
+	const submitInput = document.createElement('input');
+	submitInput.setAttribute('type', 'submit');
+	form.append(submitInput);
+
+	div.append(form);
+
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		await handleAddCommentFormSubmit(e, div, giphyImage, journal);
+	});
+}
+
+async function handleAddCommentFormSubmit(e, div, img, journal) {
+	const reqBody = {
+		comment: {
+			comment: e.target.commentInput.value,
+			giphyData: {
+				src: img.src,
+				alt: img.alt,
+			},
+		},
+	};
+	const url = `${urlInfo.backEnd}journals/${journal.id}/comments`;
+
+	const data = await postDataToApi(url, reqBody);
+
+	const newComment = await createCommentHtml(data);
+	div.append(newComment);
+
+	console.log(div);
 }
 
 function createCommentHtml({ id, comment, giphyData, emojis }) {
@@ -186,7 +302,6 @@ async function handleEmojiClick(e) {
 	const url = `${urlInfo.backEnd}journals/${journalId}/${
 		isParentJournal === 'true' ? emojiClicked : `comments/${parentId}/${emojiClicked}`
 	}`;
-	console.log(url);
 	const isEmojiChecked = getEmojiState(emojiClicked, parentId);
 	const requestBody = {
 		isEmojiChecked,

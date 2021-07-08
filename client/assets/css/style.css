@@ -58,3 +58,7 @@ nav a {
 .emoji-checked:hover {
 	background-color: rgba(68, 253, 108, 0.644);
 }
+
+.hidden {
+	visibility: hidden;
+}

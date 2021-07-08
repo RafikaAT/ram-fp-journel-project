@@ -10,7 +10,7 @@ async function fetchGiphyData() {
 	const searchTerm = giphyInput.value;
 	const url = `${urlInfo.backEnd}giphy?search=${searchTerm}`;
 	const giphyImages = await getDataFromApi(url);
-	// const giphyImages = mockData;
+	index = 0;
 	return giphyImages;
 }
 
