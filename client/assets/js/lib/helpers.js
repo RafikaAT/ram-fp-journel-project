@@ -42,20 +42,23 @@ async function createJournalHTML(journal) {
 	const emojisList = createEmojisHTML(emojis, true, id);
 	journalArticle.append(emojisList);
 
-	const isComments = comments.length > 0;
-	const commentsDiv = await createComments(journal, isComments);
+	const commentsDiv = await createComments(journal);
 	journalArticle.append(commentsDiv);
 
 	return journalArticle;
 }
 
-async function createComments(journal, isComments) {
+async function createComments(journal) {
 	const journalId = journal.id;
 	const commentsDiv = document.createElement('div');
 	commentsDiv.classList.add('comments');
 	const url = `${urlInfo.backEnd}journals/${journalId}/comments`;
 	const data = await getDataFromApi(url);
-	if (isComments) {
+	let isComments;
+	if (data.comments) {
+		isComments = await data.comments.length;
+	}
+	if (await isComments) {
 		data.comments.forEach((comment) => {
 			commentsDiv.append(createCommentHtml(comment));
 		});
