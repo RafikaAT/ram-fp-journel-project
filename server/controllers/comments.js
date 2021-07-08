@@ -8,7 +8,7 @@ commentsRouter.get("/", (req, res) => {
     const comments = Comment.getAllCommentsInJournal(journalId);
     res.status(200).send({ comments });
   } catch (err) {
-    res.status(500).send;
+    res.status(500).send();
   }
 });
 
