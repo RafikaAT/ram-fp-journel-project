@@ -459,10 +459,15 @@ async function handleEmojiClick(e) {
 
 },{"../urlInfo":6,"./fetch_utilities":2,"./giphy":3}],6:[function(require,module,exports){
 const urlInfo = {
-	frontEnd: 'http://localhost:3000/',
-	backEnd: 'http://localhost:5000/',
+	frontEnd: 'https://journell.netlify.app/',
+	backEnd: 'https://journell.herokuapp.com/',
 };
 
 module.exports = urlInfo;
+
+const devUrlInfo = {
+	frontEnd: 'http://localhost:3000/',
+	backEnd: 'http://localhost:5000/',
+};
 
 },{}]},{},[1]);
