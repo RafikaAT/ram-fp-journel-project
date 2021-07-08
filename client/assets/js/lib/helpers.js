@@ -61,13 +61,13 @@ async function createComments(journal, isComments) {
 		});
 	}
 
-	const commentButton = await createAddCommentButton(journal);
+	const commentButton = createAddCommentButton(journal);
 	commentsDiv.append(commentButton);
 
 	return commentsDiv;
 }
 
-async function createAddCommentButton(journal) {
+function createAddCommentButton(journal) {
 	const addCommentDiv = document.createElement('div');
 	const addCommentButton = document.createElement('button');
 	addCommentButton.innerText = 'Comment';
@@ -171,11 +171,10 @@ async function handleAddCommentFormSubmit(e, div, img, journal) {
 	const url = `${urlInfo.backEnd}journals/${journal.id}/comments`;
 
 	const data = await postDataToApi(url, reqBody);
-
-	const newComment = await createCommentHtml(data);
-	div.append(newComment);
-
-	console.log(div);
+	const newComment = createCommentHtml(data.comment);
+	div.parentNode.append(newComment);
+	div.parentNode.append(createAddCommentButton(journal));
+	div.parentNode.removeChild(div);
 }
 
 function createCommentHtml({ id, comment, giphyData, emojis }) {
