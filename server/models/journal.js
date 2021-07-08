@@ -8,12 +8,8 @@ class Journal {
 		this.category = journal.category;
 		this.id = journal.id;
 		this.giphyData = journal.giphyData;
-		this.comments = journal.comments || [];
-		this.emojis = journal.emojis || {
-			likes: 0,
-			loves: 0,
-			dislikes: 0,
-		};
+		this.comments = journal.comments;
+		this.emojis = journal.emojis;
 	}
 	static writeNewJournalDataToFile(data) {
 		try {
@@ -32,6 +28,12 @@ class Journal {
 
 	static createNewJournalEntry(journal) {
 		const data = this.getAllData();
+		journal.emojis = {
+			likes: 0,
+			loves: 0,
+			dislikes: 0,
+		};
+		journal.comments = [];
 		const newJournalId = this.createNewId();
 		const newJournalData = { id: newJournalId, ...journal };
 		const newJournal = new Journal(newJournalData);
