@@ -113,15 +113,15 @@ async function createJournalHTML({ id, title, content, giphyData, emojis, commen
 	journalContent.textContent = content;
 	journalArticle.append(journalContent);
 
-	const emojisList = createEmojisHTML(emojis, true, id);
-	journalArticle.append(emojisList);
-
 	if (giphyData) {
 		const giphyImg = document.createElement('img');
 		giphyImg.src = giphyData.src;
 		giphyImg.alt = giphyData.alt;
 		journalArticle.append(giphyImg);
 	}
+
+	const emojisList = createEmojisHTML(emojis, true, id);
+	journalArticle.append(emojisList);
 
 	if (comments.length) {
 		const commentsDiv = await createComments(id);
@@ -152,15 +152,15 @@ function createCommentHtml({ id, comment, giphyData, emojis }) {
 	commentBody.textContent = comment;
 	commentDiv.append(commentBody);
 
-	const emojisList = createEmojisHTML(emojis, false, id);
-	commentDiv.append(emojisList);
-
 	if (giphyData) {
 		const giphyImg = document.createElement('img');
 		giphyImg.src = giphyData.src;
 		giphyImg.alt = giphyData.alt;
 		commentDiv.append(giphyImg);
 	}
+
+	const emojisList = createEmojisHTML(emojis, false, id);
+	commentDiv.append(emojisList);
 
 	return commentDiv;
 }

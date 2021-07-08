@@ -53,5 +53,8 @@ nav a {
 }
 
 .emoji-checked {
-	background-color: green;
+	background-color: rgba(68, 253, 108, 0.829);
+}
+.emoji-checked:hover {
+	background-color: rgba(68, 253, 108, 0.644);
 }
