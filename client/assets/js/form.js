@@ -9,7 +9,7 @@ async function submitJournalEntry(e) {
 
 	// TODO replace giphyData with real data
 	const journalEntryData = {
-		category: e.target.category.value,
+		category: e.target.category.value.toLowerCase(),
 		title: e.target.title.value,
 		content: e.target.content.value,
 		giphyData: {

@@ -10,7 +10,7 @@ async function submitJournalEntry(e) {
 
 	// TODO replace giphyData with real data
 	const journalEntryData = {
-		category: e.target.category.value,
+		category: e.target.category.value.toLowerCase(),
 		title: e.target.title.value,
 		content: e.target.content.value,
 		giphyData: {
@@ -44,64 +44,64 @@ async function submitJournalEntry(e) {
 
 },{"./lib/fetch_utilities":2,"./urlInfo":3}],2:[function(require,module,exports){
 async function getDataFromApi(url) {
-  try {
-    const fetchedData = await fetch(url);
-    const dataFromJSON = await fetchedData.json();
-    return dataFromJSON;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const fetchedData = await fetch(url);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 async function deleteDataFromApi(url) {
-  try {
-    const reqObj = { method: "DELETE" };
-    await fetch(url, reqObj);
-    return true;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const reqObj = { method: 'DELETE' };
+		await fetch(url, reqObj);
+		return true;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 async function postDataToApi(url, body) {
-  try {
-    const reqObj = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    };
-    const fetchedData = await fetch(url, reqObj);
-    const dataFromJSON = await fetchedData.json();
-    return dataFromJSON;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const reqObj = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 async function putDataToApi(url, body) {
-  try {
-    const reqObj = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    };
-    const fetchedData = await fetch(url, reqObj);
-    const dataFromJSON = await fetchedData.json();
-    return dataFromJSON;
-  } catch (error) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const reqObj = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 module.exports = {
-  putDataToApi,
-  getDataFromApi,
-  deleteDataFromApi,
-  postDataToApi,
+	putDataToApi,
+	getDataFromApi,
+	deleteDataFromApi,
+	postDataToApi,
 };
 
 },{}],3:[function(require,module,exports){

@@ -8,9 +8,11 @@ const {
 const urlInfo = require('../urlInfo');
 
 async function createAllJournals() {
-	const url = `${urlInfo.backEnd}journals`;
+	const category = window.location.pathname.split('.')[0];
+	const url = `${urlInfo.backEnd}journals/categories${category}`;
 	const data = await getDataFromApi(url);
-	const journals = data.journals.map(async (journal) => {
+	console.log(data);
+	const journals = data.journalEntries.map(async (journal) => {
 		return createJournalHTML(journal);
 	});
 	const allJournals = Promise.all(journals).then((journal) => journal);
@@ -184,14 +186,15 @@ async function handleEmojiClick(e) {
 	const url = `${urlInfo.backEnd}journals/${journalId}/${
 		isParentJournal === 'true' ? emojiClicked : `comments/${parentId}/${emojiClicked}`
 	}`;
-
+	console.log(url);
 	const isEmojiChecked = getEmojiState(emojiClicked, parentId);
 	const requestBody = {
 		isEmojiChecked,
 	};
 
 	const updatedEntry = await putDataToApi(url, requestBody);
-	const emoji = document.querySelector(`#${parentId} .${e.target.classList[0]}`);
+
+	const emoji = e.target;
 	const newEmojiCount =
 		isParentJournal === 'true'
 			? updatedEntry.journal.emojis[emojiClicked]
