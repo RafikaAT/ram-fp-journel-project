@@ -25,3 +25,7 @@
 - Not many merger conflicts, which shows how well our communication is when it came to working, updating code.
 - GiphyAPI implemented and works!
 - POST form works.
+
+## Challenges:
+
+- Some of the challenges we ran into, was mainly github issues, sometimes when trying to try a `git pull`, it would lead to some errors, which would halt progress in terms of working in our own personal development environment. Quick fix around this, was to focus on tasks that required multiple people and then one screenshares, and this allows for some collaboration until the issue gets fixed.
