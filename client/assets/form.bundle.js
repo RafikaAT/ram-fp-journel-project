@@ -1,5 +1,6 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const { postDataToApi } = require('./lib/fetch_utilities');
+const { postDataToApi, getDataFromApi } = require('./lib/fetch_utilities');
+const { handleGiphySearch, shuffleImage } = require('./lib/giphy');
 const urlInfo = require('./urlInfo');
 
 const form = document.querySelector('form');
@@ -7,16 +8,22 @@ form.addEventListener('submit', submitJournalEntry);
 
 async function submitJournalEntry(e) {
 	e.preventDefault();
+	const giphyImage = document.querySelector('.giphy-image');
 
+	const giphyData = {
+		src: giphyImage.src,
+		alt: giphyImage.alt,
+	};
+	if (!giphyData.src.includes('giphy')) {
+		alert('Please add a gif!');
+		return;
+	}
 	// TODO replace giphyData with real data
 	const journalEntryData = {
 		category: e.target.category.value.toLowerCase(),
 		title: e.target.title.value,
 		content: e.target.content.value,
-		giphyData: {
-			src: 'https://media.giphy.com/media/RLW9YEaSBfBMt79fm4/giphy.gif',
-			alt: 'deadpool',
-		},
+		giphyData,
 	};
 
 	const journalBody = {
@@ -42,7 +49,18 @@ async function submitJournalEntry(e) {
 	}
 }
 
-},{"./lib/fetch_utilities":2,"./urlInfo":3}],2:[function(require,module,exports){
+const giphyInput = document.getElementById('giphy');
+const giphyButton = document.querySelector('.giphy-search');
+giphyInput.addEventListener('keydown', handleGiphySearch);
+giphyButton.addEventListener('click', handleGiphySearch);
+
+const shuffleButton = document.querySelector('.shuffle');
+shuffleButton.addEventListener('click', (e) => {
+	e.preventDefault();
+	shuffleImage();
+});
+
+},{"./lib/fetch_utilities":2,"./lib/giphy":3,"./urlInfo":4}],2:[function(require,module,exports){
 async function getDataFromApi(url) {
 	try {
 		const fetchedData = await fetch(url);
@@ -105,6 +123,54 @@ module.exports = {
 };
 
 },{}],3:[function(require,module,exports){
+const { getDataFromApi } = require('./fetch_utilities');
+const urlInfo = require('../urlInfo');
+
+let index = 0;
+let images;
+
+async function fetchGiphyData() {
+	const giphyInput = document.getElementById('giphy');
+
+	const searchTerm = giphyInput.value;
+	const url = `${urlInfo.backEnd}giphy?search=${searchTerm}`;
+	const giphyImages = await getDataFromApi(url);
+	// const giphyImages = mockData;
+	return giphyImages;
+}
+
+async function handleGiphySearch(e) {
+	const giphyInput = document.getElementById('giphy');
+	if (e.type === 'click') {
+		e.preventDefault();
+	}
+	if ((e.type === 'click' || e.key === 'Enter') && giphyInput.value !== '') {
+		e.preventDefault();
+		const data = await fetchGiphyData();
+		images = data.data.data;
+		renderGif();
+
+		const shuffleButton = document.querySelector('.shuffle');
+		shuffleButton.classList.remove('hidden');
+	}
+}
+
+function renderGif() {
+	const giphyImage = document.querySelector('.giphy-image');
+	const src = images[index].images.original.url;
+	const alt = images[index].title;
+	giphyImage.src = src;
+	giphyImage.alt = alt;
+}
+
+function shuffleImage() {
+	index = index >= images.length ? 0 : index + 1;
+	renderGif();
+}
+
+module.exports = { fetchGiphyData, handleGiphySearch, shuffleImage };
+
+},{"../urlInfo":4,"./fetch_utilities":2}],4:[function(require,module,exports){
 const urlInfo = {
 	frontEnd: 'http://localhost:3000/',
 	backEnd: 'http://localhost:5000/',

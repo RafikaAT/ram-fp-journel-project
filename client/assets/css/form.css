@@ -1,38 +1,42 @@
 .journal-post-form {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 .journal-post-form {
-    line-height: 1.5;
+	line-height: 1.5;
 }
 
 form h2 {
-    font-size: 2em;
+	font-size: 2em;
 }
 
 .form-item {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 10px;
 }
 
 .form-item > * {
-    align-self: flex-start;
+	align-self: flex-start;
 }
 
 .form-label {
-    padding: 10px 0;
-    font-weight: 700;
+	padding: 10px 0;
+	font-weight: 700;
 }
 
 textarea.journal-form-input {
-    resize: none;
-    min-height: 250px;
-    width: 80%;
+	resize: none;
+	min-height: 250px;
+	width: 80%;
 }
 
 textarea.journal-form-title-input {
-    resize: none;
-    min-height: 40px;
-    width: 80%;
+	resize: none;
+	min-height: 40px;
+	width: 80%;
+}
+
+.hidden {
+	visibility: hidden;
 }
