@@ -3,4 +3,6 @@
 .vscode
 */coverage
 
+*.env
 .env
+server/api.env
