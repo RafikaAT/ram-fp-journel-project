@@ -51,3 +51,10 @@ async function putDataToApi(url, body) {
     return false;
   }
 }
+
+module.exports = {
+  putDataToApi,
+  getDataFromApi,
+  deleteDataFromApi,
+  postDataToApi,
+};

@@ -1,9 +1,7 @@
 const { createAllJournals } = require('./helpers');
 
-function renderJournalsToPage() {
-	console.log('renderJournals');
-	const journals = createAllJournals();
-	console.log(journals);
+async function renderJournalsToPage() {
+	const journals = await createAllJournals();
 	const main = document.querySelector('main');
 	journals.forEach((journal) => {
 		main.append(journal);

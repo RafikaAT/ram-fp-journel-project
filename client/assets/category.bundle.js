@@ -9,13 +9,68 @@ document.addEventListener('DOMContentLoaded', renderJournalsToPage);
 // construct journal html
 // append comments
 
-},{"./lib/handlers":2}],2:[function(require,module,exports){
+},{"./lib/handlers":3}],2:[function(require,module,exports){
+async function getDataFromApi(url) {
+	try {
+		const fetchedData = await fetch(url);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+}
+
+async function deleteDataFromApi(url) {
+	try {
+		const reqObj = { method: 'DELETE' };
+		await fetch(url, reqObj);
+		return true;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+}
+
+async function postDataToApi(url, body) {
+	try {
+		const reqObj = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+}
+
+async function putDataToApi(url, body) {
+	try {
+		const reqObj = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (error) {
+		console.error(err);
+		return false;
+	}
+}
+
+module.exports = { putDataToApi, getDataFromApi, deleteDataFromApi, postDataToApi };
+
+},{}],3:[function(require,module,exports){
 const { createAllJournals } = require('./helpers');
 
-function renderJournalsToPage() {
-	console.log('renderJournals');
-	const journals = createAllJournals();
-	console.log(journals);
+async function renderJournalsToPage() {
+	const journals = await createAllJournals();
 	const main = document.querySelector('main');
 	journals.forEach((journal) => {
 		main.append(journal);
@@ -24,47 +79,26 @@ function renderJournalsToPage() {
 
 module.exports = { renderJournalsToPage };
 
-},{"./helpers":3}],3:[function(require,module,exports){
-// import fetch utilities
+},{"./helpers":4}],4:[function(require,module,exports){
+const {
+	putDataToApi,
+	getDataFromApi,
+	deleteDataFromApi,
+	postDataToApi,
+} = require('./fetch_utilities');
 
-function createAllJournals() {
-	// TODO fetch real journal Data
-	// ******************
-	// MOCKDATA
-	const mockData = {
-		journals: [
-			{
-				id: 'test-id',
-				title: 'post title',
-				content: 'post content',
-				category: 'anime',
-				commentIds: [1, 2, 3],
-				giphyData: {
-					src: 'https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg',
-					alt: 'giphy gif',
-				},
-				emojis: {
-					likes: 1,
-					loves: 1,
-					dislikes: 1,
-				},
-			},
-		],
-	};
-	// ******************
-
-	const journals = [];
-	mockData.journals.forEach((journal) => {
-		console.log(journal);
-		console.log(createJournalHTML(journal));
-		journals.push(createJournalHTML(journal));
+async function createAllJournals() {
+	const url = 'http://localhost:5000/journals';
+	const data = await getDataFromApi(url);
+	const journals = data.journals.map(async (journal) => {
+		return createJournalHTML(journal);
 	});
-
-	return journals;
+	const allJournals = Promise.all(journals).then((journal) => journal);
+	return allJournals;
 }
 
 // accept journalData object and comments array
-function createJournalHTML({ id, title, content, giphyData, emojis, commentIds }) {
+async function createJournalHTML({ id, title, content, giphyData, emojis, comments }) {
 	const journalArticle = document.createElement('article');
 	journalArticle.id = id;
 
@@ -86,40 +120,20 @@ function createJournalHTML({ id, title, content, giphyData, emojis, commentIds }
 		journalArticle.append(giphyImg);
 	}
 
-	if (commentIds.length) {
-		const commentsDiv = createComments(id);
+	if (comments.length) {
+		const commentsDiv = await createComments(id);
 		journalArticle.append(commentsDiv);
 	}
 
 	return journalArticle;
 }
 
-function createComments(journalId) {
-	// TODO fetch real comment data
-	// ******************
-	// MOCKDATA
-	const mockData = {
-		comments: [
-			{
-				id: 'test-comment',
-				journalId: 'test-id',
-				comment: 'comment body',
-				giphyData: {
-					src: 'https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g',
-					alt: 'giphy gif',
-				},
-				emojis: {
-					likes: 1,
-					loves: 1,
-					dislikes: 1,
-				},
-			},
-		],
-	};
-	// ******************
+async function createComments(journalId) {
 	const commentsDiv = document.createElement('div');
+	const url = `http://localhost:5000/journals/${journalId}/comments`;
+	const data = await getDataFromApi(url);
 	commentsDiv.classList.add('comments');
-	mockData.comments.forEach((comment) => {
+	data.comments.forEach((comment) => {
 		commentsDiv.append(createCommentHtml(comment));
 	});
 
@@ -167,4 +181,4 @@ function createEmojisHTML({ likes, loves, dislikes }) {
 }
 module.exports = { createAllJournals };
 
-},{}]},{},[1]);
+},{"./fetch_utilities":2}]},{},[1]);
