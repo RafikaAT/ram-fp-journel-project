@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="assets/js/form.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/form.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Journal Entry</title>
-</head>
-<body>
-    <nav>
-        <h1>JOURNEL</h1>
-        <div>
-            <a href="#">Anime</a>
-            <a href="#">Food</a>
-            <a href="#">Movies</a>
-        </div>	
-    </nav>
-    <form class="journal-post-form">
-        <h2 class="entry-title">Create a journal entry</h2>
-        <div class="form-item">
-          <label for="category-selector" class="form-label">Select Your Post Category</label>
-            <input id="category-selector" list="categories" name="category" required>
-            <datalist id="categories">
-                <option value="Anime">
-                <option value="Food">
-                <option value="Movies">
-            </datalist>
-        </div>
-        <div class="form-item">
-            <label for="journal-entry-title" class="form-label">Entry Title</label>
-            <textarea maxlength="400" class="journal-form-title-input" name="title" id="journal-entry" placeholder="Please enter your title here (max 50 Characters)"></textarea>
-        </div>
-        <div class="form-item">
-            <label for="journal-entry" class="form-label">Journal Entry</label>
-            <textarea maxlength="400" class="journal-form-input" name="content" id="journal-entry" placeholder="Please enter your thoughts here (max 400 Characters)"></textarea>
-        </div>
-        <input type="submit">  
-
-        
-    </form>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script defer src="assets/js/form.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/form.css" />
+		<link rel="stylesheet" href="assets/css/style.css" />
+		<title>Journal Entry</title>
+	</head>
+	<body>
+		<nav>
+			<h1><a href="/">JOURNEL</a></h1>
+			<div>
+				<a href="anime.html">Anime</a>
+				<a href="#">Food</a>
+				<a href="#">Movies</a>
+			</div>
+		</nav>
+		<form class="journal-post-form">
+			<h2 class="entry-title">Create a journal entry</h2>
+			<div class="form-item">
+				<label for="category-selector" class="form-label">Select Your Post Category</label>
+				<input id="category-selector" list="categories" name="category" required />
+				<datalist id="categories">
+					<option value="Anime"></option>
+					<option value="Food"></option>
+					<option value="Movies"></option>
+				</datalist>
+			</div>
+			<div class="form-item">
+				<label for="journal-entry-title" class="form-label">Entry Title</label>
+				<textarea
+					maxlength="400"
+					class="journal-form-title-input"
+					name="title"
+					id="journal-entry"
+					placeholder="Please enter your title here (max 50 Characters)"
+				></textarea>
+			</div>
+			<div class="form-item">
+				<label for="journal-entry" class="form-label">Journal Entry</label>
+				<textarea
+					maxlength="400"
+					class="journal-form-input"
+					name="content"
+					id="journal-entry"
+					placeholder="Please enter your thoughts here (max 400 Characters)"
+				></textarea>
+			</div>
+			<input type="submit" />
+		</form>
+	</body>
 </html>
