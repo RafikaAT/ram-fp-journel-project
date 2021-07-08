@@ -29,3 +29,4 @@
 ## Challenges:
 
 - Some of the challenges we ran into, was mainly github issues, sometimes when trying to try a `git pull`, it would lead to some errors, which would halt progress in terms of working in our own personal development environment. Quick fix around this, was to focus on tasks that required multiple people and then one screenshares, and this allows for some collaboration until the issue gets fixed.
+- Some of the more challenges faced by some of the team members, is being abit reluctant of starting the task, the fear of not knowing what to do was holding them back, when infact in reality, they did know what to do, just needed to think of a pseudo code, try their logic and then troubleshoot. This was overcame by support from our senior developer who motivated and inspired.
