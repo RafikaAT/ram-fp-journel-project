@@ -1,1 +1,182 @@
-{"journals":[{"id":"test-id1","title":"test-title1","content":"post content1","category":"anime","comments":["test-comment-id","test-comment-id3","test-comment-id6"],"giphyData":{"src":"https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-id2","title":"test-title2","content":"post content2","category":"anime","comments":["test-comment-id1","test-comment-id2","test-comment-id7"],"giphyData":{"src":"https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-id3","title":"test-title3","content":"post content3","category":"anime","comments":["test-comment-id4","test-comment-id5"],"giphyData":{"src":"https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"ec8df5f0-db13-4b7e-a227-cc3a0e96248a","category":"food","title":"Food is good","content":"At first I was angry and now I have food and therefore I am no longer angry.\nFood is good.","giphyData":{"src":"https://media.giphy.com/media/RLW9YEaSBfBMt79fm4/giphy.gif","alt":"deadpool"},"emojis":{"likes":1,"loves":0,"dislikes":1},"comments":[]},{"id":"0e58ef87-b2ef-4b02-9acc-f1c01e5629f8","category":"movies","title":"Deadpool","content":"Top 3 funniest MCU movies.\nFight me.","giphyData":{"src":"https://media.giphy.com/media/RLW9YEaSBfBMt79fm4/giphy.gif","alt":"deadpool"},"emojis":{"likes":6,"loves":4,"dislikes":4},"comments":[]}],"comments":[{"id":"test-comment-id","journalId":"test-id1","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-comment-id1","journalId":"test-id2","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-comment-id2","journalId":"test-id2","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-comment-id3","journalId":"test-id1","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":2,"loves":1,"dislikes":1}},{"id":"test-comment-id4","journalId":"test-id3","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-comment-id5","journalId":"test-id3","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-comment-id6","journalId":"test-id1","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}},{"id":"test-comment-id7","journalId":"test-id2","comment":"comment body","giphyData":{"src":"https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g","alt":"alt"},"emojis":{"likes":1,"loves":1,"dislikes":1}}]}
+{
+	"journals": [
+		{
+			"id": "test-id1",
+			"title": "test-title1",
+			"content": "post content1",
+			"category": "anime",
+			"comments": ["test-comment-id", "test-comment-id3", "test-comment-id6"],
+			"giphyData": {
+				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-id2",
+			"title": "test-title2",
+			"content": "post content2",
+			"category": "anime",
+			"comments": ["test-comment-id1", "test-comment-id2", "test-comment-id7"],
+			"giphyData": {
+				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-id3",
+			"title": "test-title3",
+			"content": "post content3",
+			"category": "anime",
+			"comments": ["test-comment-id4", "test-comment-id5"],
+			"giphyData": {
+				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "ec8df5f0-db13-4b7e-a227-cc3a0e96248a",
+			"category": "food",
+			"title": "Food is good",
+			"content": "At first I was angry and now I have food and therefore I am no longer angry.\nFood is good.",
+			"giphyData": {
+				"src": "https://media.giphy.com/media/RLW9YEaSBfBMt79fm4/giphy.gif",
+				"alt": "deadpool"
+			},
+			"emojis": { "likes": 1, "loves": 0, "dislikes": 1 },
+			"comments": []
+		},
+		{
+			"id": "0e58ef87-b2ef-4b02-9acc-f1c01e5629f8",
+			"category": "movies",
+			"title": "Deadpool",
+			"content": "Top 3 funniest MCU movies.\nFight me.",
+			"giphyData": {
+				"src": "https://media.giphy.com/media/RLW9YEaSBfBMt79fm4/giphy.gif",
+				"alt": "deadpool"
+			},
+			"emojis": { "likes": 6, "loves": 4, "dislikes": 4 },
+			"comments": []
+		},
+		{
+			"id": "ba6432aa-885f-411b-82be-3eff1843ff70",
+			"category": "food",
+			"title": "food",
+			"content": "all the food is good.",
+			"giphyData": {
+				"src": "https://media1.giphy.com/media/RLW9YEaSBfBMt79fm4/giphy.gif?cid=956239d74jtz2hrkc280vpsquvv1ygmtflvrwbcjilg13l89&rid=giphy.gif&ct=g",
+				"alt": "Deadpool 2 Yes GIF by 20th Century Fox Home Entertainment"
+			},
+			"emojis": { "likes": 0, "loves": 0, "dislikes": 0 },
+			"comments": []
+		},
+		{
+			"id": "949032fc-7c03-4e01-9659-b1df21d2021c",
+			"category": "movies",
+			"title": "deadpool;",
+			"content": "Ryan Reynolds",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/26xBE8LbggMqwH1PW/giphy.gif?cid=956239d74jtz2hrkc280vpsquvv1ygmtflvrwbcjilg13l89&rid=giphy.gif&ct=g",
+				"alt": "Ryan Reynolds Deadpool GIF by 20th Century Fox Home Entertainment"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 0 },
+			"comments": []
+		},
+		{
+			"id": "fbf930af-8fe0-4ce8-8db5-313b38bc7024",
+			"category": "anime",
+			"title": "Tokyo Ghoul",
+			"content": "Season 1, ep 10. That's it. That's the journEl",
+			"giphyData": {
+				"src": "https://media1.giphy.com/media/2XLoAphEiufV6/giphy.gif?cid=956239d7wtssvwfrkrtv0yjryxvnatwerrcxmojq2svrbjxl&rid=giphy.gif&ct=g",
+				"alt": "ken watanabe GIF"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 0 },
+			"comments": []
+		}
+	],
+	"comments": [
+		{
+			"id": "test-comment-id",
+			"journalId": "test-id1",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 2, "dislikes": 1 }
+		},
+		{
+			"id": "test-comment-id1",
+			"journalId": "test-id2",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-comment-id2",
+			"journalId": "test-id2",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-comment-id3",
+			"journalId": "test-id1",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 2, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-comment-id4",
+			"journalId": "test-id3",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-comment-id5",
+			"journalId": "test-id3",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-comment-id6",
+			"journalId": "test-id1",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		},
+		{
+			"id": "test-comment-id7",
+			"journalId": "test-id2",
+			"comment": "comment body",
+			"giphyData": {
+				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
+				"alt": "alt"
+			},
+			"emojis": { "likes": 1, "loves": 1, "dislikes": 1 }
+		}
+	]
+}
