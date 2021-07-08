@@ -24,3 +24,4 @@
 - Frontend journal entry submission form is operating which shows the whole website coming together really nicely.
 - Not many merger conflicts, which shows how well our communication is when it came to working, updating code.
 - GiphyAPI implemented and works!
+- POST form works.
