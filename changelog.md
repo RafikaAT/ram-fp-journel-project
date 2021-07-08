@@ -101,8 +101,12 @@ Pages
 
 ## Changes
 
-Akash - In journal.js added a function to facilitate the adding of new journal entries, in the models folder.
-06/07/21, I have added all the neccesary methods to the journals model and finished it off, now it is completely finished.
+## Akash
+
+- Create frontend wireframe with Figma paired with Rafika
+- In journal.js added a function to facilitate the adding of new journal entries, in the models folder.
+- 06/07/21 I have added all the neccesary methods to the journals model and finished it off, now it is completely finished.
+- Post data validated
 
 ### Frontend
 
@@ -116,5 +120,6 @@ Akash - In journal.js added a function to facilitate the adding of new journal e
 - abstract `/journals/:journalId/comments` to router
 - create `Comment` model
 - abstract JSON file writing logic
+- POST validations for client and server
 
 ### Misc
