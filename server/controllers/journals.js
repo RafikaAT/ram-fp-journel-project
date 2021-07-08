@@ -4,13 +4,13 @@ const Journal = require('../models/journal');
 
 // /journals endpoint
 
-journalsRouter.get('/', (req, res) => {
-	try {
-		const journals = Journal.all();
-		res.status(200).send({ journals });
-	} catch (err) {
-		res.status(500).send;
-	}
+journalsRouter.get("/", (req, res) => {
+  try {
+    const journals = Journal.all();
+    res.status(200).send({ journals });
+  } catch (err) {
+    res.status(500).send();
+  }
 });
 
 journalsRouter.post('/', (req, res) => {
