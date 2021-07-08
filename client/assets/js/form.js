@@ -1,4 +1,5 @@
-const { postDataToApi } = require('./lib/fetch_utilities');
+const { postDataToApi, getDataFromApi } = require('./lib/fetch_utilities');
+const { handleGiphySearch, shuffleImage } = require('./lib/giphy');
 const urlInfo = require('./urlInfo');
 
 const form = document.querySelector('form');
@@ -6,16 +7,22 @@ form.addEventListener('submit', submitJournalEntry);
 
 async function submitJournalEntry(e) {
 	e.preventDefault();
+	const giphyImage = document.querySelector('.giphy-image');
 
+	const giphyData = {
+		src: giphyImage.src,
+		alt: giphyImage.alt,
+	};
+	if (!giphyData.src.includes('giphy')) {
+		alert('Please add a gif!');
+		return;
+	}
 	// TODO replace giphyData with real data
 	const journalEntryData = {
-		category: e.target.category.value,
+		category: e.target.category.value.toLowerCase(),
 		title: e.target.title.value,
 		content: e.target.content.value,
-		giphyData: {
-			src: 'https://media.giphy.com/media/RLW9YEaSBfBMt79fm4/giphy.gif',
-			alt: 'deadpool',
-		},
+		giphyData,
 	};
 
 	const journalBody = {
@@ -40,3 +47,14 @@ async function submitJournalEntry(e) {
 			break;
 	}
 }
+
+const giphyInput = document.getElementById('giphy');
+const giphyButton = document.querySelector('.giphy-search');
+giphyInput.addEventListener('keydown', handleGiphySearch);
+giphyButton.addEventListener('click', handleGiphySearch);
+
+const shuffleButton = document.querySelector('.shuffle');
+shuffleButton.addEventListener('click', (e) => {
+	e.preventDefault();
+	shuffleImage();
+});

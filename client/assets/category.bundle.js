@@ -3,75 +3,117 @@ const { renderJournalsToPage } = require('./lib/handlers');
 
 document.addEventListener('DOMContentLoaded', renderJournalsToPage);
 
-// fetch all journals
-// foreach journal
-// fetch comments
-// construct journal html
-// append comments
-
-},{"./lib/handlers":3}],2:[function(require,module,exports){
+},{"./lib/handlers":4}],2:[function(require,module,exports){
 async function getDataFromApi(url) {
-  try {
-    const fetchedData = await fetch(url);
-    const dataFromJSON = await fetchedData.json();
-    return dataFromJSON;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const fetchedData = await fetch(url);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 async function deleteDataFromApi(url) {
-  try {
-    const reqObj = { method: "DELETE" };
-    await fetch(url, reqObj);
-    return true;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const reqObj = { method: 'DELETE' };
+		await fetch(url, reqObj);
+		return true;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 async function postDataToApi(url, body) {
-  try {
-    const reqObj = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    };
-    const fetchedData = await fetch(url, reqObj);
-    const dataFromJSON = await fetchedData.json();
-    return dataFromJSON;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const reqObj = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 async function putDataToApi(url, body) {
-  try {
-    const reqObj = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    };
-    const fetchedData = await fetch(url, reqObj);
-    const dataFromJSON = await fetchedData.json();
-    return dataFromJSON;
-  } catch (error) {
-    console.error(err);
-    return false;
-  }
+	try {
+		const reqObj = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body),
+		};
+		const fetchedData = await fetch(url, reqObj);
+		const dataFromJSON = await fetchedData.json();
+		return dataFromJSON;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 }
 
 module.exports = {
-  putDataToApi,
-  getDataFromApi,
-  deleteDataFromApi,
-  postDataToApi,
+	putDataToApi,
+	getDataFromApi,
+	deleteDataFromApi,
+	postDataToApi,
 };
 
 },{}],3:[function(require,module,exports){
+const { getDataFromApi } = require('./fetch_utilities');
+const urlInfo = require('../urlInfo');
+
+let index = 0;
+let images;
+
+async function fetchGiphyData() {
+	const giphyInput = document.getElementById('giphy');
+
+	const searchTerm = giphyInput.value;
+	const url = `${urlInfo.backEnd}giphy?search=${searchTerm}`;
+	const giphyImages = await getDataFromApi(url);
+	index = 0;
+	return giphyImages;
+}
+
+async function handleGiphySearch(e) {
+	const giphyInput = document.getElementById('giphy');
+	if (e.type === 'click') {
+		e.preventDefault();
+	}
+	if ((e.type === 'click' || e.key === 'Enter') && giphyInput.value !== '') {
+		e.preventDefault();
+		const data = await fetchGiphyData();
+		images = data.data.data;
+		renderGif();
+
+		const shuffleButton = document.querySelector('.shuffle');
+		shuffleButton.classList.remove('hidden');
+	}
+}
+
+function renderGif() {
+	const giphyImage = document.querySelector('.giphy-image');
+	const src = images[index].images.original.url;
+	const alt = images[index].title;
+	giphyImage.src = src;
+	giphyImage.alt = alt;
+}
+
+function shuffleImage() {
+	index = index >= images.length ? 0 : index + 1;
+	renderGif();
+}
+
+module.exports = { fetchGiphyData, handleGiphySearch, shuffleImage };
+
+},{"../urlInfo":6,"./fetch_utilities":2}],4:[function(require,module,exports){
 const { createAllJournals } = require('./helpers');
 
 async function renderJournalsToPage() {
@@ -84,20 +126,21 @@ async function renderJournalsToPage() {
 
 module.exports = { renderJournalsToPage };
 
-},{"./helpers":4}],4:[function(require,module,exports){
+},{"./helpers":5}],5:[function(require,module,exports){
 const {
 	putDataToApi,
 	getDataFromApi,
 	deleteDataFromApi,
 	postDataToApi,
 } = require('./fetch_utilities');
-
+const { fetchGiphyData, handleGiphySearch, shuffleImage } = require('./giphy');
 const urlInfo = require('../urlInfo');
 
 async function createAllJournals() {
-	const url = `${urlInfo.backEnd}journals`;
+	const category = window.location.pathname.split('.')[0];
+	const url = `${urlInfo.backEnd}journals/categories${category}`;
 	const data = await getDataFromApi(url);
-	const journals = data.journals.map(async (journal) => {
+	const journals = data.journalEntries.map(async (journal) => {
 		return createJournalHTML(journal);
 	});
 	const allJournals = Promise.all(journals).then((journal) => journal);
@@ -105,7 +148,8 @@ async function createAllJournals() {
 }
 
 // accept journalData object and comments array
-async function createJournalHTML({ id, title, content, giphyData, emojis, comments }) {
+async function createJournalHTML(journal) {
+	const { id, title, content, giphyData, emojis, comments } = journal;
 	const journalArticle = document.createElement('article');
 	journalArticle.id = id;
 
@@ -117,9 +161,6 @@ async function createJournalHTML({ id, title, content, giphyData, emojis, commen
 	journalContent.textContent = content;
 	journalArticle.append(journalContent);
 
-	const emojisList = createEmojisHTML(emojis, true, id);
-	journalArticle.append(emojisList);
-
 	if (giphyData) {
 		const giphyImg = document.createElement('img');
 		giphyImg.src = giphyData.src;
@@ -127,24 +168,145 @@ async function createJournalHTML({ id, title, content, giphyData, emojis, commen
 		journalArticle.append(giphyImg);
 	}
 
-	if (comments.length) {
-		const commentsDiv = await createComments(id);
-		journalArticle.append(commentsDiv);
-	}
+	const emojisList = createEmojisHTML(emojis, true, id);
+	journalArticle.append(emojisList);
+
+	const commentsDiv = await createComments(journal);
+	journalArticle.append(commentsDiv);
 
 	return journalArticle;
 }
 
-async function createComments(journalId) {
+async function createComments(journal) {
+	const journalId = journal.id;
 	const commentsDiv = document.createElement('div');
+	commentsDiv.classList.add('comments');
 	const url = `${urlInfo.backEnd}journals/${journalId}/comments`;
 	const data = await getDataFromApi(url);
-	commentsDiv.classList.add('comments');
-	data.comments.forEach((comment) => {
-		commentsDiv.append(createCommentHtml(comment));
-	});
+	let isComments;
+	if (data.comments) {
+		isComments = await data.comments.length;
+	}
+	if (await isComments) {
+		data.comments.forEach((comment) => {
+			commentsDiv.append(createCommentHtml(comment));
+		});
+	}
+
+	const commentButton = createAddCommentButton(journal);
+	commentsDiv.append(commentButton);
 
 	return commentsDiv;
+}
+
+function createAddCommentButton(journal) {
+	const addCommentDiv = document.createElement('div');
+	const addCommentButton = document.createElement('button');
+	addCommentButton.innerText = 'Comment';
+	addCommentDiv.append(addCommentButton);
+
+	addCommentButton.addEventListener('click', () => {
+		handleAddCommentButtonClick(journal, addCommentDiv, addCommentButton);
+	});
+
+	return addCommentDiv;
+}
+
+async function handleAddCommentButtonClick(journal, div, button) {
+	if (document.querySelector('form')) {
+		alert('Please submit your other comment first.');
+		return;
+	}
+	button.style.display = 'none';
+	const form = document.createElement('form');
+
+	const commentInputLabel = document.createElement('label');
+	commentInputLabel.setAttribute('for', 'commentInput');
+	commentInputLabel.textContent = 'comment';
+	form.append(commentInputLabel);
+
+	const commentInput = document.createElement('input');
+	commentInput.setAttribute('name', 'commentInput');
+	commentInput.setAttribute('type', 'text');
+	commentInput.setAttribute('required', true);
+	commentInput.id = 'commentInput';
+	form.append(commentInput);
+
+	// GIPHY
+
+	// <label for="giphy" class="form-label">Select A Gif</label>
+	const giphyInputLabel = document.createElement('label');
+	giphyInputLabel.setAttribute('for', 'giphy');
+	giphyInputLabel.textContent = 'Search for a gif';
+	form.append(giphyInputLabel);
+
+	// <input type="text" name="giphy" id="giphy" class="hidden-input" />
+	// giphyInput.addEventListener('keydown', handleGiphySearch);
+	const giphyInput = document.createElement('input');
+	giphyInput.setAttribute('name', 'giphy');
+	giphyInput.setAttribute('type', 'text');
+	giphyInput.id = 'giphy';
+	giphyInput.addEventListener('keydown', handleGiphySearch);
+	form.append(giphyInput);
+
+	// <button class="giphy-search">search</button>
+	// giphyButton.addEventListener('click', handleGiphySearch);
+	const giphySearchButton = document.createElement('button');
+	giphySearchButton.innerText = 'Search';
+	giphySearchButton.className = 'giphy-search';
+	giphySearchButton.addEventListener('click', handleGiphySearch);
+	form.append(giphySearchButton);
+
+	// <img src="" alt="" class="giphy-image" />
+	const giphyImage = document.createElement('img');
+	giphyImage.src = '';
+	giphyImage.alt = '';
+	giphyImage.className = 'giphy-image';
+	form.append(giphyImage);
+
+	// <button class="shuffle hidden">Shuffle</button>
+	// shuffleButton.addEventListener('click', (e) => {
+	// 	e.preventDefault();
+	// 	shuffleImage();
+	// });
+	const giphyShuffleButton = document.createElement('button');
+	giphyShuffleButton.innerText = 'Shuffle';
+	giphyShuffleButton.className = 'shuffle hidden';
+	giphyShuffleButton.addEventListener('click', (e) => {
+		e.preventDefault();
+		shuffleImage();
+	});
+	form.append(giphySearchButton);
+
+	const submitInput = document.createElement('input');
+	submitInput.setAttribute('type', 'submit');
+	form.append(submitInput);
+
+	div.append(form);
+
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		await handleAddCommentFormSubmit(e, div, giphyImage, journal);
+	});
+}
+
+async function handleAddCommentFormSubmit(e, div, img, journal) {
+	const reqBody = {
+		comment: {
+			comment: e.target.commentInput.value,
+			giphyData: {
+				src: img.src,
+				alt: img.alt,
+			},
+		},
+	};
+	const url = `${urlInfo.backEnd}journals/${journal.id}/comments`;
+
+	const data = await postDataToApi(url, reqBody);
+	const newComment = createCommentHtml(data.comment);
+	div.parentNode.append(newComment);
+	div.parentNode.append(createAddCommentButton(journal));
+	div.parentNode.removeChild(div);
 }
 
 function createCommentHtml({ id, comment, giphyData, emojis }) {
@@ -156,15 +318,15 @@ function createCommentHtml({ id, comment, giphyData, emojis }) {
 	commentBody.textContent = comment;
 	commentDiv.append(commentBody);
 
-	const emojisList = createEmojisHTML(emojis, false, id);
-	commentDiv.append(emojisList);
-
 	if (giphyData) {
 		const giphyImg = document.createElement('img');
 		giphyImg.src = giphyData.src;
 		giphyImg.alt = giphyData.alt;
 		commentDiv.append(giphyImg);
 	}
+
+	const emojisList = createEmojisHTML(emojis, false, id);
+	commentDiv.append(emojisList);
 
 	return commentDiv;
 }
@@ -271,14 +433,14 @@ async function handleEmojiClick(e) {
 	const url = `${urlInfo.backEnd}journals/${journalId}/${
 		isParentJournal === 'true' ? emojiClicked : `comments/${parentId}/${emojiClicked}`
 	}`;
-
 	const isEmojiChecked = getEmojiState(emojiClicked, parentId);
 	const requestBody = {
 		isEmojiChecked,
 	};
 
 	const updatedEntry = await putDataToApi(url, requestBody);
-	const emoji = document.querySelector(`#${parentId} .${e.target.classList[0]}`);
+
+	const emoji = e.target;
 	const newEmojiCount =
 		isParentJournal === 'true'
 			? updatedEntry.journal.emojis[emojiClicked]
@@ -295,12 +457,17 @@ async function handleEmojiClick(e) {
 	}
 }
 
-},{"../urlInfo":5,"./fetch_utilities":2}],5:[function(require,module,exports){
+},{"../urlInfo":6,"./fetch_utilities":2,"./giphy":3}],6:[function(require,module,exports){
 const urlInfo = {
-	frontEnd: 'http://localhost:3000/',
-	backEnd: 'http://localhost:5000/',
+	frontEnd: 'https://journell.netlify.app/',
+	backEnd: 'https://journell.herokuapp.com/',
 };
 
 module.exports = urlInfo;
+
+const devUrlInfo = {
+	frontEnd: 'http://localhost:3000/',
+	backEnd: 'http://localhost:5000/',
+};
 
 },{}]},{},[1]);

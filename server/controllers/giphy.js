@@ -4,7 +4,7 @@ const https = require('https');
 
 giphyRouter.get('/', async (req, res) => {
 	const { search } = req.query;
-	const url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${search}&limit=5`;
+	const url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${search}&limit=25`;
 	https
 		.get(url, (response) => {
 			response.setEncoding('utf8');
