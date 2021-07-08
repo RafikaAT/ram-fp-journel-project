@@ -104,7 +104,7 @@ class Comment {
 			data.comments[commentIndex].emojis[emoji]--;
 		}
 		this.writeNewCommentDataToFile(data);
-		return true;
+		return new Comment(data.comments[commentIndex]);
 	}
 }
 
