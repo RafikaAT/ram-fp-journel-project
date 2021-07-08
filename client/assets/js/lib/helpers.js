@@ -5,8 +5,10 @@ const {
 	postDataToApi,
 } = require('./fetch_utilities');
 
+const urlInfo = require('../urlInfo');
+
 async function createAllJournals() {
-	const url = 'http://localhost:5000/journals';
+	const url = `${urlInfo.backEnd}journals`;
 	const data = await getDataFromApi(url);
 	const journals = data.journals.map(async (journal) => {
 		return createJournalHTML(journal);
@@ -48,7 +50,7 @@ async function createJournalHTML({ id, title, content, giphyData, emojis, commen
 
 async function createComments(journalId) {
 	const commentsDiv = document.createElement('div');
-	const url = `http://localhost:5000/journals/${journalId}/comments`;
+	const url = `${urlInfo.backEnd}journals/${journalId}/comments`;
 	const data = await getDataFromApi(url);
 	commentsDiv.classList.add('comments');
 	data.comments.forEach((comment) => {
