@@ -9,7 +9,7 @@ journalsRouter.get("/", (req, res) => {
     const journals = Journal.all();
     res.status(200).send({ journals });
   } catch (err) {
-    res.status(500).send;
+    res.status(500).send();
   }
 });
 
