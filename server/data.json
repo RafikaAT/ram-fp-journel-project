@@ -1,167 +1,72 @@
 {
-
 	"journals": [
 		{
-			"id": "test-id1",
-			"title": "test-title1",
-			"content": "post content1",
-			"category": "anime",
-			"comments": ["test-comment-id", "test-comment-id3", "test-comment-id6"],
+			"id": "455ed254-03ce-494e-a827-827ac65f4b08",
+			"category": "food",
+			"title": "Food Journels!",
+			"content": "Post here about your favourite foody thoughts",
 			"giphyData": {
-				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
-				"alt": "alt"
+				"src": "https://media1.giphy.com/media/12uXi1GXBibALC/giphy.gif?cid=956239d7clvlnp9h9nh4c6mdj6ftzbiojktaaimayymdkbug&rid=giphy.gif&ct=g",
+				"alt": "Food Reaction GIF by SpongeBob SquarePants"
 			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
+			"emojis": { "likes": 0, "loves": 0, "dislikes": 0 },
+			"comments": []
 		},
 		{
-			"id": "test-id2",
-			"title": "test-title2",
-			"content": "post content2",
+			"id": "024ccf87-3f7b-4ee3-ab42-7a9c6037d957",
 			"category": "anime",
-			"comments": ["test-comment-id1", "test-comment-id2", "test-comment-id7"],
+			"title": "Post about all things anime",
+			"content": "Who doesn't love a good anime?",
 			"giphyData": {
-				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
-				"alt": "alt"
+				"src": "https://media3.giphy.com/media/4ilFRqgbzbx4c/giphy.gif?cid=956239d7kwpn0zr4az2qf1653z8g8z8rdvdb7mgnprcvldwi&rid=giphy.gif&ct=g",
+				"alt": "cowboy bebop smoking GIF"
 			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
+			"emojis": { "likes": 1, "loves": 0, "dislikes": 0 },
+			"comments": []
 		},
 		{
-			"id": "test-id3",
-			"title": "test-title3",
-			"content": "post content3",
-			"category": "anime",
-			"comments": ["test-comment-id4", "test-comment-id5"],
+			"id": "e4478b48-05c3-4393-b3db-237ce81866b4",
+			"category": "movies",
+			"title": "Post about movies!",
+			"content": "What are your favourite films?  I really love Deadpool!",
 			"giphyData": {
-				"src": "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FY0PCz5xO3caljsBNYm%2Fgiphy.gif%3Fcid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg%26cid%3D6104955efa0c1649b9713b83b8c77947d96dc94f0795a946%26rid%3Dgiphy.gif%26ct%3Dg",
-				"alt": "alt"
+				"src": "https://media4.giphy.com/media/26xBE8LbggMqwH1PW/giphy.gif?cid=956239d70febujj5yhm7xh78og0u6y8wpz4rxc0pm83rr5op&rid=giphy.gif&ct=g",
+				"alt": "Ryan Reynolds Deadpool GIF by 20th Century Fox Home Entertainment"
 			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
+			"emojis": { "likes": 0, "loves": 0, "dislikes": 0 },
+			"comments": []
 		}
 	],
 	"comments": [
 		{
-			"id": "test-comment-id",
-			"journalId": "test-id1",
-			"comment": "comment body",
+			"id": "cc756957-0e48-44a3-8a93-8f5088fd058d",
+			"comment": "comment about your favourite foods!",
 			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
+				"src": "https://media1.giphy.com/media/3orif9AXt2ycrJhXG0/giphy.gif?cid=956239d7b9y23bzjgj9lwysplrb5w8dfydi13yn7ly71w5n4&rid=giphy.gif&ct=g",
+				"alt": "homer simpson GIF"
 			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
+			"journalId": "455ed254-03ce-494e-a827-827ac65f4b08",
+			"emojis": { "likes": 0, "loves": 0, "dislikes": 0 }
 		},
 		{
-			"id": "test-comment-id1",
-			"journalId": "test-id2",
-			"comment": "comment body",
+			"id": "f098314d-1825-410c-85e2-9be06522bbb3",
+			"comment": "Comment on all things anime!",
 			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
+				"src": "https://media2.giphy.com/media/ayMW3eqvuP00o/giphy.gif?cid=956239d7kwpn0zr4az2qf1653z8g8z8rdvdb7mgnprcvldwi&rid=giphy.gif&ct=g",
+				"alt": "No Face GIF by Spirited Away"
 			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
+			"journalId": "024ccf87-3f7b-4ee3-ab42-7a9c6037d957",
+			"emojis": { "likes": 0, "loves": 0, "dislikes": 0 }
 		},
 		{
-			"id": "test-comment-id2",
-			"journalId": "test-id2",
-			"comment": "comment body",
+			"id": "f8fbefa2-2b2c-4e4a-8ffa-52aae5df5bf1",
+			"comment": "Comment about all things movies!",
 			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
+				"src": "https://media1.giphy.com/media/3o7rc0qU6m5hneMsuc/giphy.gif?cid=956239d7m689l6pj5ya9jgdpn65urq8pglhshjds009z2fmb&rid=giphy.gif&ct=g",
+				"alt": "Movie Popcorn GIF by Angry Birds"
 			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
-		},
-		{
-			"id": "test-comment-id3",
-			"journalId": "test-id1",
-			"comment": "comment body",
-			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
-			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
-		},
-		{
-			"id": "test-comment-id4",
-			"journalId": "test-id3",
-			"comment": "comment body",
-			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
-			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
-		},
-		{
-			"id": "test-comment-id5",
-			"journalId": "test-id3",
-			"comment": "comment body",
-			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
-			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
-		},
-		{
-			"id": "test-comment-id6",
-			"journalId": "test-id1",
-			"comment": "comment body",
-			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
-			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
-		},
-		{
-			"id": "test-comment-id7",
-			"journalId": "test-id2",
-			"comment": "comment body",
-			"giphyData": {
-				"src": "https://media2.giphy.com/media/d0sWibpAwneSI/giphy-downsized.gif?cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g&cid=6104955efb565d489c2ce69f5f87b0b1aba0fd744a5dd1e4&rid=giphy-downsized.gif&ct=g",
-				"alt": "alt"
-			},
-			"emojis": {
-				"likes": 1,
-				"loves": 1,
-				"dislikes": 1
-			}
+			"journalId": "e4478b48-05c3-4393-b3db-237ce81866b4",
+			"emojis": { "likes": 0, "loves": 0, "dislikes": 0 }
 		}
 	]
 }
