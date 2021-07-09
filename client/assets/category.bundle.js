@@ -433,7 +433,7 @@ async function handleEmojiClick(e) {
 	const url = `${urlInfo.backEnd}journals/${journalId}/${
 		isParentJournal === 'true' ? emojiClicked : `comments/${parentId}/${emojiClicked}`
 	}`;
-	const isEmojiChecked = !getEmojiState(emojiClicked, parentId);
+	const isEmojiChecked = getEmojiState(emojiClicked, parentId);
 	const requestBody = {
 		isEmojiChecked,
 	};
@@ -458,16 +458,17 @@ async function handleEmojiClick(e) {
 }
 
 },{"../urlInfo":6,"./fetch_utilities":2,"./giphy":3}],6:[function(require,module,exports){
-const urlInfo = {
-	frontEnd: 'https://journell.netlify.app/',
-	backEnd: 'https://journell.herokuapp.com/',
-};
+const urlInfo =
+	window.location.hostname === 'localhost'
+		? {
+				frontEnd: 'http://localhost:3000/',
+				backEnd: 'http://localhost:5000/',
+		  }
+		: {
+				frontEnd: 'https://journell.netlify.app/',
+				backEnd: 'https://journell.herokuapp.com/',
+		  };
 
 module.exports = urlInfo;
-
-const devUrlInfo = {
-	frontEnd: 'http://localhost:3000/',
-	backEnd: 'http://localhost:5000/',
-};
 
 },{}]},{},[1]);
