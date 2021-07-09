@@ -25,4 +25,10 @@ describe("comments model", () => {
     const allData = Comment.getAllData();
     expect(allData.comments.length).toBe(testData.comments.length + 1);
   });
+
+  test("deleting all comments means comment array is empty", () => {
+    deleteEntryAllData = Comment.deleteAllCommentsInJournal("test-id1");
+    const allData = Comment.getAllCommentsInJournal();
+    expect(testData.comments.length).toBe(0);
+  });
 });
