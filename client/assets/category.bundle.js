@@ -433,7 +433,7 @@ async function handleEmojiClick(e) {
 	const url = `${urlInfo.backEnd}journals/${journalId}/${
 		isParentJournal === 'true' ? emojiClicked : `comments/${parentId}/${emojiClicked}`
 	}`;
-	const isEmojiChecked = getEmojiState(emojiClicked, parentId);
+	const isEmojiChecked = !getEmojiState(emojiClicked, parentId);
 	const requestBody = {
 		isEmojiChecked,
 	};
