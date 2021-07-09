@@ -8,15 +8,20 @@ commentsRouter.get('/', (req, res) => {
 		const comments = Comment.getAllCommentsInJournal(journalId);
 		res.status(200).send({ comments });
 	} catch (err) {
-		res.status(500).send;
+		res.status(500).send();
 	}
 });
 
 commentsRouter.post('/', (req, res) => {
+	console.log(req.body.comment);
 	try {
 		const { comment } = req.body;
+		console.log(comment);
 		const journalId = req.params.journalId;
 		comment.journalId = req.body.journalId;
+		if (comment.comment.length > 100) {
+			res.status(400).send({ message: 'The comment cannnot exceed 100 characters' });
+		}
 		const newComment = Comment.createNewComment(comment);
 		res.status(200).send({ comment: newComment });
 	} catch (err) {
@@ -44,6 +49,14 @@ commentsRouter.delete('/:commentId', (req, res) => {
 	} catch (err) {
 		res.status(500).send();
 	}
+});
+
+commentsRouter.put('/:commentId/:emoji', (req, res) => {
+	const newEmojiStatus = !req.body.isEmojiChecked;
+	const commentId = req.params.commentId;
+	const emojiToUpdate = req.params.emoji;
+	const updatedComment = Comment.updateEmoji(emojiToUpdate, newEmojiStatus, commentId);
+	res.status(200).send({ comment: updatedComment });
 });
 
 module.exports = commentsRouter;

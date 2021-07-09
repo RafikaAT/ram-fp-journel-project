@@ -46,10 +46,15 @@ async function putDataToApi(url, body) {
 		const fetchedData = await fetch(url, reqObj);
 		const dataFromJSON = await fetchedData.json();
 		return dataFromJSON;
-	} catch (error) {
+	} catch (err) {
 		console.error(err);
 		return false;
 	}
 }
 
-module.exports = { putDataToApi, getDataFromApi, deleteDataFromApi, postDataToApi };
+module.exports = {
+	putDataToApi,
+	getDataFromApi,
+	deleteDataFromApi,
+	postDataToApi,
+};

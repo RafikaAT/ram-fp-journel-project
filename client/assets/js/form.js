@@ -1,47 +1,60 @@
-const journalSubmitButton = document.querySelector('input[type="submit"]')
+const { postDataToApi, getDataFromApi } = require('./lib/fetch_utilities');
+const { handleGiphySearch, shuffleImage } = require('./lib/giphy');
+const urlInfo = require('./urlInfo');
 
-journalSubmitButton.addEventListener('submit', submitJournalEntry)
+const form = document.querySelector('form');
+form.addEventListener('submit', submitJournalEntry);
 
+async function submitJournalEntry(e) {
+	e.preventDefault();
+	const giphyImage = document.querySelector('.giphy-image');
 
-function submitJournalEntry(e) {
-    e.preventDefault();
-    const journalEntryData = {
+	const giphyData = {
+		src: giphyImage.src,
+		alt: giphyImage.alt,
+	};
+	if (!giphyData.src.includes('giphy')) {
+		alert('Please add a gif!');
+		return;
+	}
+	// TODO replace giphyData with real data
+	const journalEntryData = {
+		category: e.target.category.value.toLowerCase(),
+		title: e.target.title.value,
+		content: e.target.content.value,
+		giphyData,
+	};
 
-        category: e.target.category.value,
-        title: e.target.title.value,
-        content: e.target.content.value
-    };
+	const journalBody = {
+		journal: journalEntryData,
+	};
+	const url = `${urlInfo.backEnd}journals`;
+	const data = await postDataToApi(url, journalBody);
 
-    const options = { 
-        method: 'POST',
-        body: JSON.stringify(journalEntryData),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
+	const category = data.newJournalEntry.category.toLowerCase();
 
-    let port = 3000
-    fetch(`http://localhost:${port}/`, options)
-    .then(r => r.json())
-    .then(console.log(r))
-    .catch(console.warn)
+	switch (category) {
+		case 'anime':
+			window.location.href = `${urlInfo.frontEnd}anime.html`;
+			break;
+		case 'food':
+			window.location.href = `${urlInfo.frontEnd}food.html`;
+			break;
+		case 'movies':
+			window.location.href = `${urlInfo.frontEnd}movies.html`;
+			break;
+		default:
+			break;
+	}
 }
 
-const form = document.querySelector('#new-journal-form');
-form.addEventListener('submit', (e)=>postJournal(e))
+const giphyInput = document.getElementById('giphy');
+const giphyButton = document.querySelector('.giphy-search');
+giphyInput.addEventListener('keydown', handleGiphySearch);
+giphyButton.addEventListener('click', handleGiphySearch);
 
-
-function postJournal(e) {
-    e.preventDefault();
-    const newJournal = document.querySelector('#new-journal').value;
-    const url = 'http://localhost:3000/journals';
-    const reqObj = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        journal: newJournal,
-      })
-    }
-    const newJournal = postDataToApi(url, reqObj);
-  }
-
+const shuffleButton = document.querySelector('.shuffle');
+shuffleButton.addEventListener('click', (e) => {
+	e.preventDefault();
+	shuffleImage();
+});

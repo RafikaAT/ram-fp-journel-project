@@ -8,11 +8,7 @@ class Comment {
 		this.giphyData = comment.giphyData;
 		this.id = comment.id;
 		this.journalId = comment.journalId;
-		this.emojis = comment.emojis || {
-			likes: 0,
-			loves: 0,
-			dislikes: 0,
-		};
+		this.emojis = comment.emojis;
 	}
 
 	static writeNewCommentDataToFile(data) {
@@ -44,6 +40,11 @@ class Comment {
 
 	static createNewComment(comment) {
 		const data = this.getAllData();
+		comment.emojis = {
+			likes: 0,
+			loves: 0,
+			dislikes: 0,
+		};
 		const newCommentId = this.createNewId();
 		const newCommentData = { id: newCommentId, ...comment };
 		const newComment = new Comment(newCommentData);
@@ -104,7 +105,7 @@ class Comment {
 			data.comments[commentIndex].emojis[emoji]--;
 		}
 		this.writeNewCommentDataToFile(data);
-		return true;
+		return new Comment(data.comments[commentIndex]);
 	}
 }
 

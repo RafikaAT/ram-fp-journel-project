@@ -2,43 +2,45 @@ const { readDataFromFile, writeDataToFile } = require('./data');
 const { v4: uuidv4 } = require('uuid');
 
 class Journal {
-  constructor(journal) {
-    this.content = journal.content;
-    this.title = journal.title;
-    this.category = journal.category;
-    this.id = journal.id;
-    this.giphyData = journal.giphyData;
-    this.comments = journal.comments || [];
-    this.emojis = journal.emojis || {
-      likes: 0,
-      loves: 0,
-      dislikes: 0,
-    };
-  }
-  static writeNewJournalDataToFile(data) {
-    try {
-      writeDataToFile(data);
-      return true;
-    } catch (err) {
-      console.log(err);
-      return false;
-    }
-  }
+	constructor(journal) {
+		this.content = journal.content;
+		this.title = journal.title;
+		this.category = journal.category;
+		this.id = journal.id;
+		this.giphyData = journal.giphyData;
+		this.comments = journal.comments;
+		this.emojis = journal.emojis;
+	}
+	static writeNewJournalDataToFile(data) {
+		try {
+			writeDataToFile(data);
+			return true;
+		} catch (err) {
+			console.log(err);
+			return false;
+		}
+	}
 
   static getAllData() {
     const allData = readDataFromFile();
     return allData;
   }
 
-  static createNewJournalEntry(journal) {
-    const data = this.getAllData();
-    const newJournalId = this.createNewId();
-    const newJournalData = { id: newJournalId, ...journal };
-    const newJournal = new Journal(newJournalData);
-    data.journals.push(newJournalData);
-    this.writeNewJournalDataToFile(data);
-    return newJournal;
-  }
+	static createNewJournalEntry(journal) {
+		const data = this.getAllData();
+		journal.emojis = {
+			likes: 0,
+			loves: 0,
+			dislikes: 0,
+		};
+		journal.comments = [];
+		const newJournalId = this.createNewId();
+		const newJournalData = { id: newJournalId, ...journal };
+		const newJournal = new Journal(newJournalData);
+		data.journals.push(newJournalData);
+		this.writeNewJournalDataToFile(data);
+		return newJournal;
+	}
 
   static createNewId() {
     const newId = uuidv4();

@@ -1,53 +1,64 @@
 :root {
-    --light-text: #FFF;
-    --navbar-homebutton-background: #2C53DA;
-    --navbar-categories-background: #5DACF5;  
+	--light-text: #fff;
+	--navbar-homebutton-background: #2c53da;
+	--navbar-categories-background: #5dacf5;
 }
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    background-image: url('images/homepage-image.png');
-    background-size: cover;
-    background-position: center;  
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    color: var(--light-text);
+	background-image: url('images/homepage-image.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	min-height: 100vh;
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	color: var(--light-text);
 }
 
 nav {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    place-items: center;
-    background-color: var(--navbar-homebutton-background);
-    box-shadow: 0 5px 5px #00000070;
-    width: 100%;
+	display: grid;
+	grid-template-columns: 30% 70%;
+	place-items: center;
+	background-color: var(--navbar-homebutton-background);
+	box-shadow: 0 5px 5px #00000070;
+	width: 100%;
 }
 
 h1 {
-    background-color: var(--navbar-homebutton-background);
-    padding: 0;
-    margin: 0;
+	background-color: var(--navbar-homebutton-background);
+	padding: 0;
+	margin: 0;
 }
 
 nav div {
-    background-color: var(--navbar-categories-background);
-    padding: 10px;
-    text-align: center;
-    display: grid;
-    width: 100%;
-    grid-template-columns: auto auto auto;
+	background-color: var(--navbar-categories-background);
+	padding: 10px;
+	text-align: center;
+	display: grid;
+	width: 100%;
+	grid-template-columns: auto auto auto;
 }
 
 nav a {
-    text-decoration: none;
-    color: var(--light-text);
-    background-color: var(--navbar-categories-background);
-    padding: 10px;
-    text-align: center;
+	text-decoration: none;
+	color: var(--light-text);
+	background-color: var(--navbar-categories-background);
+	padding: 10px;
+	text-align: center;
+}
+
+.emoji-checked {
+	background-color: rgba(68, 253, 108, 0.829);
+}
+.emoji-checked:hover {
+	background-color: rgba(68, 253, 108, 0.644);
+}
+
+.hidden {
+	visibility: hidden;
 }
