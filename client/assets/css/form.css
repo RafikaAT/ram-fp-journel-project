@@ -18,6 +18,9 @@ form {
 	margin: 20px 0;
 	border-radius: 10px;
 	background-color: #5dacf550;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
 }
 
 form h2 {
@@ -33,10 +36,7 @@ form h2 {
 	flex-direction: column;
 	padding-bottom: 10px;
 	width: 100%;
-}
-
-.form-item > * {
-	align-self: flex-start;
+	text-align: center;
 }
 
 .form-label {
@@ -47,28 +47,46 @@ form h2 {
 textarea.journal-form-input {
 	resize: none;
 	min-height: 250px;
-	width: 80%;
 }
 
 textarea.journal-form-title-input {
 	resize: none;
 	min-height: 40px;
-	width: 80%;
 }
 
 .shuffle,
 .giphy-search {
 	margin: 10px 0;
 }
+.giphy-search {
+	display: block;
+	width: 70px;
+	padding: 5px;
+	margin: 10px auto;
+}
+
+.giphy-image {
+	max-width: 400px;
+}
+
+input[type='submit'] {
+	padding: 5px;
+}
 
 @media screen and (max-width: 700px) {
 	form {
 		width: 500px;
 	}
+	.giphy-image {
+		max-width: 300px;
+	}
 }
 @media screen and (max-width: 600px) {
 	form {
 		width: 300px;
+	}
+	.giphy-image {
+		max-width: 200px;
 	}
 }
 @media screen and (max-width: 400px) {
