@@ -6,14 +6,33 @@
 	line-height: 1.5;
 }
 
+main {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+form {
+	width: 600px;
+	padding: 20px;
+	margin: 20px 0;
+	border-radius: 10px;
+	background-color: #5dacf550;
+}
+
 form h2 {
 	font-size: 2em;
+}
+
+#journal-entry {
+	height: 200px;
 }
 
 .form-item {
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 10px;
+	width: 100%;
 }
 
 .form-item > * {
@@ -35,4 +54,25 @@ textarea.journal-form-title-input {
 	resize: none;
 	min-height: 40px;
 	width: 80%;
+}
+
+.shuffle,
+.giphy-search {
+	margin: 10px 0;
+}
+
+@media screen and (max-width: 700px) {
+	form {
+		width: 500px;
+	}
+}
+@media screen and (max-width: 600px) {
+	form {
+		width: 300px;
+	}
+}
+@media screen and (max-width: 400px) {
+	form {
+		width: 250px;
+	}
 }
