@@ -1,0 +1,96 @@
+.journal-post-form {
+	font-size: 16px;
+}
+
+.journal-post-form {
+	line-height: 1.5;
+}
+
+main {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+form {
+	width: 600px;
+	padding: 20px;
+	margin: 20px 0;
+	border-radius: 10px;
+	background-color: #5dacf550;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+form h2 {
+	font-size: 2em;
+}
+
+#journal-entry {
+	height: 200px;
+}
+
+.form-item {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 10px;
+	width: 100%;
+	text-align: center;
+}
+
+.form-label {
+	padding: 10px 0;
+	font-weight: 700;
+}
+
+textarea.journal-form-input {
+	resize: none;
+	min-height: 250px;
+}
+
+textarea.journal-form-title-input {
+	resize: none;
+	min-height: 40px;
+}
+
+.shuffle,
+.giphy-search {
+	margin: 10px 0;
+}
+.giphy-search {
+	display: block;
+	width: 70px;
+	padding: 5px;
+	margin: 10px auto;
+}
+
+.giphy-image {
+	max-width: 400px;
+}
+
+input[type='submit'] {
+	padding: 5px;
+}
+
+@media screen and (max-width: 700px) {
+	form {
+		width: 500px;
+	}
+	.giphy-image {
+		max-width: 300px;
+	}
+}
+@media screen and (max-width: 600px) {
+	form {
+		width: 300px;
+	}
+	.giphy-image {
+		max-width: 200px;
+	}
+}
+@media screen and (max-width: 400px) {
+	form {
+		width: 250px;
+	}
+}
